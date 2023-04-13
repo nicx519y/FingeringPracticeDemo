@@ -3,7 +3,7 @@ html, body {
     margin: 0;
     font-size: 16px;
     overflow: hidden;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Consolas', sans-serif;
     user-select: none;
 }
 
@@ -54,8 +54,8 @@ html, body {
     justify-content: center;
     align-items: center;
     height: 1.3em;
-    width: 1.005em;
-    margin: 0 .01em;
+    width: .8em;
+    margin: 0 .02em;
     border-radius: .1em;
 }
 
