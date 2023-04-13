@@ -44,14 +44,18 @@ html, body {
     height: 2em;
 }
 
+.display-panel .row:first-child {
+    border-top: dashed 1px #ccc;
+}
+
 .display-panel .word {
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
     height: 1.3em;
-    width: 1.05em;
-    margin: 0 .1em;
+    width: 1.005em;
+    margin: 0 .01em;
     border-radius: .1em;
 }
 
@@ -68,6 +72,7 @@ html, body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    box-shadow: 0em -.2em .5em rgba(0, 0, 0, 0.3);
 }
 
 .keyboard .row {
@@ -91,6 +96,7 @@ html, body {
     Border-radius: .3em;
     background-color: white;
     color: black;
+    box-shadow: .1em .1em .2em rgba(0, 0, 0, 0.7);
 }
 
 .keyboard .key.highlight {

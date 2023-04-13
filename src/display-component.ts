@@ -18,6 +18,7 @@ export class DisplayComponent {
     //设置显示区域内容
     setContent(config: DisplayConfigInterface) {
         this.element.innerHTML = '';
+        this._showenPage = -1;
         config.pages.forEach((page) => {
             const pageElement = document.createElement('div');
             pageElement.classList.add('page');
@@ -59,6 +60,7 @@ export class DisplayComponent {
         this._pagesElements.forEach((pageElement) => {
             pageElement.classList.remove('active');
         });
+        console.log(this._pagesElements[page])
         this._pagesElements[page] && this._pagesElements[page].classList.add('active');
         this._showenPage = page;
     }
