@@ -52,7 +52,11 @@ export class KeyboardActionComponent extends DelegatedEventTarget {
     }
 
     _keyupHandler = (event: KeyboardEvent) => {
-        if([KeyboardControlKey.CTRL, KeyboardControlKey.SHIFT, KeyboardControlKey.ALT].indexOf(event.key as KeyboardControlKey) !== -1) {
+        event.preventDefault();
+
+        const key: String = event.key === 'Meta' ? 'Control' : event.key;
+
+        if([KeyboardControlKey.CTRL, KeyboardControlKey.SHIFT, KeyboardControlKey.ALT].indexOf(key as KeyboardControlKey) !== -1) {
             this._currControlKey = KeyboardControlKey.NONE;
             this._currControlLocation = KeyboardControlLocation.NONE;
         }
@@ -61,50 +65,52 @@ export class KeyboardActionComponent extends DelegatedEventTarget {
     _keydownHandler = (event: KeyboardEvent) => {
         event.preventDefault();
 
-        if([KeyboardControlKey.CTRL, KeyboardControlKey.SHIFT, KeyboardControlKey.ALT].indexOf(event.key as KeyboardControlKey) !== -1) {
-            this._currControlKey = event.key as KeyboardControlKey;
+        const key: String = event.key === 'Meta' ? 'Control' : event.key;
+
+        if([KeyboardControlKey.CTRL, KeyboardControlKey.SHIFT, KeyboardControlKey.ALT].indexOf(key as KeyboardControlKey) !== -1) {
+            this._currControlKey = key as KeyboardControlKey;
             this._currControlLocation = event.location as KeyboardControlLocation;
         }
 
         if(!this._currAction) return;
 
-        if([KeyboardControlKey.CTRL, KeyboardControlKey.SHIFT, KeyboardControlKey.ALT].indexOf(event.key as KeyboardControlKey) !== -1) {
+        if([KeyboardControlKey.CTRL, KeyboardControlKey.SHIFT, KeyboardControlKey.ALT].indexOf(key as KeyboardControlKey) !== -1) {
             if(this._currAction.control !== KeyboardControlKey.NONE) {
-                if(this._currAction.control !== event.key || this._currAction.location !== event.location) {
+                if(this._currAction.control !== key || this._currAction.location !== event.location) {
                     this.dispatchEvent(new CustomEvent(KeyboardActionEvent.WRONG, {
-                        detail: { key: event.key }
+                        detail: { key: key }
                     }));
                 }
             } else {
-                if(this._currAction.keyResult !== event.key) {
+                if(this._currAction.keyResult !== key) {
                     this.dispatchEvent(new CustomEvent(KeyboardActionEvent.WRONG, {
-                        detail: { key: event.key }
+                        detail: { key: key }
                     }));
                 } else {
                     this.dispatchEvent(new CustomEvent(KeyboardActionEvent.RIGHT, {
-                        detail: { key: event.key }
+                        detail: { key: key }
                     }));
                 }
             }
         } else {
-            if(this._currAction.keyResult !== event.key) {
+            if(this._currAction.keyResult !== key) {
                 this.dispatchEvent(new CustomEvent(KeyboardActionEvent.WRONG, {
-                    detail: { key: event.key }
+                    detail: { key: key }
                 }));
             } else {
                 if(this._currAction.control !== KeyboardControlKey.NONE) {
                     if(this._currAction.control !== this._currControlKey || this._currAction.location !== this._currControlLocation) {
                         this.dispatchEvent(new CustomEvent(KeyboardActionEvent.WRONG, {
-                            detail: { key: event.key }
+                            detail: { key: key }
                         }));
                     } else {
                         this.dispatchEvent(new CustomEvent(KeyboardActionEvent.RIGHT, {
-                            detail: { key: event.key }
+                            detail: { key: key }
                         }));
                     }
                 } else {
                     this.dispatchEvent(new CustomEvent(KeyboardActionEvent.RIGHT, {
-                        detail: { key: event.key }
+                        detail: { key: key }
                     }));
                 }
             }

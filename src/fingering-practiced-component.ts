@@ -1,9 +1,13 @@
+import wrongMp3 from './audios/wrong.mp3';
+import keyMp3 from './audios/key.mp3';
+
 import { KeyboardComponent } from './keyboard-component';
 import { DisplayComponent } from './display-component';
 import { DisplayConfigInterface } from './display-config-interface'
 import { KeyboardActionEvent } from './keyboard-action-component';
 import { DelegatedEventTarget } from './delegated-event-target';
 import { MyAudio } from './my-audio';
+
 
 export enum FingeringPracticedEvent {
   Right = 'Right',
@@ -21,8 +25,8 @@ export class FingeringPracticedComponent extends DelegatedEventTarget {
   _isStarted: boolean = false;
   _wrongCount: number = 0;
   _rightCount: number = 0;
-  _wrongAudio: MyAudio = new MyAudio('wrong.mp3', 0, 1);
-  _keyAudio: MyAudio = new MyAudio('key.mp3', 1.115, 1.5);
+  _wrongAudio: MyAudio = new MyAudio(wrongMp3, 0, 1);
+  _keyAudio: MyAudio = new MyAudio(keyMp3, 1.115, 1.5);
 
   constructor() {
     super();

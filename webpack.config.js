@@ -1,4 +1,5 @@
 const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
     entry: path.join(__dirname,'./src/index.ts'),
@@ -15,6 +16,13 @@ module.exports = {
                 test: /\.css$/i,
                 use: ['style-loader', 'css-loader'],
             },
+            {
+                test: /\.(mp3|wav)$/i,
+                type: 'asset/resource',
+                generator: {
+                    filename: 'audios/[hash][ext]',
+                }
+            },
         ],
     },
 
@@ -30,7 +38,7 @@ module.exports = {
         hints: false
     },
     devServer: {
-        static: './dist',
+        static: './dist/',
         proxy: [
             {
                 host: 'localhost',
@@ -38,4 +46,9 @@ module.exports = {
             },
         ],
     },
+    plugins: [
+        new HtmlWebpackPlugin({
+            title: '指法练习',
+        })
+    ],
 };
