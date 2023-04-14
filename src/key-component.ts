@@ -20,14 +20,16 @@ export class KeyComponent {
             this.element.classList.add('key-special');
         }
 
+        const keyLabel: string = ['ctrl', 'fn', 'alt', 'shift', ' ', 'backspace', 'capslock', 'enter', 'tab'].indexOf(key.toLowerCase()) === -1 ? key.toUpperCase() : key;
+        
         if(hasSubKey) {
             this.element.innerHTML = `
                 <div class="sub-key-label" >${subKey}</div>
-                <div class="key-label">${key}</div>
+                <div class="key-label">${keyLabel}</div>
             `;
         } else {
             this.element.innerHTML = `
-                <div class="key-label">${key}</div>
+                <div class="key-label">${keyLabel}</div>
             `;
         }
     }

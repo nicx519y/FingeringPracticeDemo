@@ -87,13 +87,14 @@ export class FingeringPracticedComponent extends DelegatedEventTarget {
       detail: event.detail,
     }));
 
+    this.display.highlightActiveWord();
     this._wrongAudio.play();
   }
 
   set wordOffset(offset: number) {
     if(this._isStarted === false) return;
 
-    this.display.wordHighlightOffset = offset;
+    this.display.wordOffset = offset;
     this.keyboard.hightLightKeysByAction(this.words[offset]);
     this._offset = offset;
   }

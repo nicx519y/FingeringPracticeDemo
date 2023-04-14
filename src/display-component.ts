@@ -5,7 +5,7 @@ export class DisplayComponent {
     element: HTMLElement;
 
     _wordsCounts: number[] = [];
-    _wordHighlightOffset: number = 0;
+    _wordOffset: number = 0;
     _pagesElements: HTMLElement[] = [];
     _wordsElements: HTMLElement[] = [];
     _showenPage: number = -1;
@@ -43,7 +43,7 @@ export class DisplayComponent {
         //初始化变量
         this._pagesElements = Array.from(this.element.querySelectorAll('.page'));
         this._wordsElements = Array.from(this.element.querySelectorAll('.word'));
-        this._wordHighlightOffset = 0;
+        this._wordOffset = 0;
         //记录每一页的word数量
         this._wordsCounts = config.pages.map((page) => {
             return page.rows.reduce((acc, row) => {
@@ -77,26 +77,42 @@ export class DisplayComponent {
     }
     
     //设置到某个word为止高亮
-    set wordHighlightOffset(offset: number) {
+    set wordOffset(offset: number) {
 
         if(offset < 0 || offset > this._wordsElements.length) return;
 
-        if(offset > this._wordHighlightOffset) {
-            for(let i = this._wordHighlightOffset; i < offset; i++) {
-                this._wordsElements[i].classList.add('highlight');
+        if(this._wordOffset < this._wordsElements.length && this._wordOffset >= 0) {
+            this._wordsElements[this._wordOffset].classList.remove('active');
+            this._wordsElements[this._wordOffset].classList.remove('highlight');
+        }
+
+        if(offset > this._wordOffset) {
+            for(let i = this._wordOffset; i < offset; i++) {
+                this._wordsElements[i].classList.add('complete');
             }
         } else {
-            for(let i = this._wordHighlightOffset - 1; i >= offset; i--) {
-                this._wordsElements[i].classList.remove('highlight');
+            for(let i = this._wordOffset - 1; i >= offset; i--) {
+                this._wordsElements[i].classList.remove('complete');
             }
         }
-        this._wordHighlightOffset = offset;
+
+        this._wordOffset = offset;
+
+        if(this._wordOffset < this._wordsElements.length && this._wordOffset >= 0) {
+            this._wordsElements[this._wordOffset].classList.add('active');
+        }
 
         this._setPageActive(this._getPageNumberByOffset(offset + 1));
     }
 
     //获取当前高亮的word的offset
-    get wordHighlightOffset(): number {
-        return this._wordHighlightOffset;
+    get wordOffset(): number {
+        return this._wordOffset;
     }
+
+    //高亮闪烁active的word
+    highlightActiveWord() {
+        this._wordsElements[this._wordOffset].style.animationPlayState = 'running';
+    }
+
 }

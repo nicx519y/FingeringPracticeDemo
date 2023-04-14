@@ -21,7 +21,7 @@ html, body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-}
+}x
 
 .display-panel .page {
     display: none;
@@ -40,12 +40,12 @@ html, body {
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    border-bottom: dashed 1px #ccc;
+    border-bottom: dashed 1px #eee;
     height: 2em;
 }
 
 .display-panel .row:first-child {
-    border-top: dashed 1px #ccc;
+    border-top: dashed 1px #eee;
 }
 
 .display-panel .word {
@@ -57,13 +57,50 @@ html, body {
     width: .8em;
     margin: 0 .02em;
     border-radius: .1em;
+    border: solid 1px white;
 }
 
-.display-panel .word.highlight {
-    background-color: #dcdcdc;
+.display-panel .word.complete {
+    background-color: #eee;
+    border-color: #eee;
     color: black;
 }
 
+.display-panel .word.active {
+    background-color: green;
+    border-color: green;
+    color: white;
+
+    animation-name: wordflash, wordhighlight;
+    animation-duration: .4s, .2s;
+    animation-timing-function: linear, linear;
+    animation-delay: 0s, .4s;
+    animation-fill-mode: none, forwards;
+    animation-iteration-count: 1, 1;
+    animation-play-state: paused;
+}
+
+@keyframes wordflash {
+    50% {
+        background-color: white;
+        border-color: white;
+        color: black;
+    }
+}
+
+@keyframes wordhighlight { 
+    0% {
+        background-color: green;
+        border-color: green;
+        color: white;
+    }
+    100% {
+        background-color: #F08080;
+        border-color: red;
+        color: white;
+    }
+}
+    
 .keyboard {
     padding: .5em;
     width: 100vw;
@@ -73,6 +110,7 @@ html, body {
     justify-content: center;
     align-items: center;
     box-shadow: 0em -.2em .5em rgba(0, 0, 0, 0.3);
+    background-color: #D3D3D3;
 }
 
 .keyboard .row {
@@ -94,22 +132,21 @@ html, body {
     align-items: center;
     margin: .2em;
     Border-radius: .3em;
-    background-color: white;
-    color: black;
+    background-color: black;
+    color: white;
     box-shadow: .1em .1em .2em rgba(0, 0, 0, 0.7);
 }
 
 .keyboard .key.highlight {
-    background-color: #8A2BE2;
-    border-color: #8A2BE2;
+    background-color: green;
+    border-color: green;
     color: white;
 }
 
 .keyboard .key .key-label {
     width: 100%;
-    height: 70%;
     text-align: center;
-    font-size: 1.2em;
+    font-size: 1.1em;
     justify-content: center;
 }
 
@@ -122,8 +159,10 @@ html, body {
 .keyboard .key .sub-key-label {
     width: 100%;
     height: 30%;
+    flex: 0;
     text-align: center;
     font-size: .8em;
+    justify-content: center;
 }
 
 .keyboard .key-shift {
