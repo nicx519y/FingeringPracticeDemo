@@ -66,6 +66,8 @@ export class KeyboardActionComponent extends DelegatedEventTarget {
         event.preventDefault();
 
         const key: String = event.key === 'Meta' ? 'Control' : event.key;
+        
+        // console.log(`keydown: currAction`, this._currAction, `key - ${key}`);
 
         if([KeyboardControlKey.CTRL, KeyboardControlKey.SHIFT, KeyboardControlKey.ALT].indexOf(key as KeyboardControlKey) !== -1) {
             this._currControlKey = key as KeyboardControlKey;

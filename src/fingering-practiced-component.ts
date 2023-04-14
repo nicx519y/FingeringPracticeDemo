@@ -3,7 +3,7 @@ import keyMp3 from './audios/key.mp3';
 
 import { KeyboardComponent } from './keyboard-component';
 import { DisplayComponent } from './display-component';
-import { DisplayConfigInterface } from './display-config-interface'
+import { DisplayConfigInterface, DisplayConfig, DisplayViewModel } from './display-config';
 import { KeyboardActionEvent } from './keyboard-action-component';
 import { DelegatedEventTarget } from './delegated-event-target';
 import { MyAudio } from './my-audio';
@@ -43,19 +43,23 @@ export class FingeringPracticedComponent extends DelegatedEventTarget {
 
   }
 
+  //设置显示区域内容
   setContent(config: DisplayConfigInterface) {
     this._isStarted = true;
     this._wrongCount = 0;
     this._rightCount = 0;
 
-    this.display.setContent(config);
-    this.words = config.pages.reduce((acc, page) => {
-      return acc.concat(page.rows.map((row) => row.words));
-    }, []).join('').split('');
+    const c: DisplayConfig = new DisplayConfig(config);
+
+    console.log('configModel', c);
+
+    this.display.setContent(c);
+    this.words = c.parseToWords();
     this.wordOffset = 0;
     this._startTime = new Date();
   }
 
+  //键盘输入正确事件
   _keyboardRightHandler = (event: CustomEvent) => {
     if(this._isStarted === false) return;
 
@@ -78,6 +82,7 @@ export class FingeringPracticedComponent extends DelegatedEventTarget {
     this._keyAudio.play();
   }
 
+  //键盘输入错误事件
   _keyboardWrongHandler = (event: CustomEvent) => {
     if(this._isStarted === false) return;
 
@@ -91,6 +96,7 @@ export class FingeringPracticedComponent extends DelegatedEventTarget {
     this._wrongAudio.play();
   }
 
+  //设置当前要输入的字符位置
   set wordOffset(offset: number) {
     if(this._isStarted === false) return;
 
@@ -99,10 +105,12 @@ export class FingeringPracticedComponent extends DelegatedEventTarget {
     this._offset = offset;
   }
 
+  //获取当前要输入的字符位置
   get wordOffset(): number {
     return this._offset;
   }
 
+  //获取耗时
   get timeElapsed(): number {
     return Date.now() - this._startTime.getTime();
   }

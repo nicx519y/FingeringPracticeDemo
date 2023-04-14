@@ -1,4 +1,4 @@
-import { DisplayConfigInterface } from './display-config-interface';
+import {  DisplayConfig, DisplayViewModel } from './display-config';
 
 export class DisplayComponent {
 
@@ -16,10 +16,12 @@ export class DisplayComponent {
     }
 
     //设置显示区域内容
-    setContent(config: DisplayConfigInterface) {
+    setContent(config: DisplayConfig) {
         this.element.innerHTML = '';
         this._showenPage = -1;
-        config.pages.forEach((page) => {
+
+        const model: DisplayViewModel = config.parseToViewModel();
+        model.pages.forEach((page) => {
             const pageElement = document.createElement('div');
             pageElement.classList.add('page');
             page.rows.forEach((row) => {
@@ -31,6 +33,7 @@ export class DisplayComponent {
                     wordElement.innerHTML = word;
                     rowElement.appendChild(wordElement);
                 });
+
                 pageElement.appendChild(rowElement);
 
             });
@@ -38,18 +41,14 @@ export class DisplayComponent {
         });
 
         //设置字体大小
-        this.element.style.fontSize = `${config.size}px`;
+        this.element.style.fontSize = `${model.size}px`;
 
         //初始化变量
         this._pagesElements = Array.from(this.element.querySelectorAll('.page'));
         this._wordsElements = Array.from(this.element.querySelectorAll('.word'));
         this._wordOffset = 0;
         //记录每一页的word数量
-        this._wordsCounts = config.pages.map((page) => {
-            return page.rows.reduce((acc, row) => {
-                return acc + row.words.length;
-            }, 0);
-        });
+        this._wordsCounts = config.getWordsCountAllPage();
 
         this._setPageActive(0);
     }
@@ -60,7 +59,6 @@ export class DisplayComponent {
         this._pagesElements.forEach((pageElement) => {
             pageElement.classList.remove('active');
         });
-        console.log(this._pagesElements[page])
         this._pagesElements[page] && this._pagesElements[page].classList.add('active');
         this._showenPage = page;
     }
@@ -83,7 +81,8 @@ export class DisplayComponent {
 
         if(this._wordOffset < this._wordsElements.length && this._wordOffset >= 0) {
             this._wordsElements[this._wordOffset].classList.remove('active');
-            this._wordsElements[this._wordOffset].classList.remove('highlight');
+            this._wordsElements[this._wordOffset].classList.remove('wf-class1');
+            this._wordsElements[this._wordOffset].classList.remove('wf-class2');
         }
 
         if(offset > this._wordOffset) {
@@ -112,7 +111,16 @@ export class DisplayComponent {
 
     //高亮闪烁active的word
     highlightActiveWord() {
-        this._wordsElements[this._wordOffset].style.animationPlayState = 'running';
+        const ele = this._wordsElements[this._wordOffset];
+        ele.classList.remove('wf-class1');
+        window.requestAnimationFrame(() => {
+            window.requestAnimationFrame(() => ele.classList.add('wf-class1'));
+        });
+
+        // ele.style.animationPlayState = 'paused';
+        // window.requestAnimationFrame(() => {
+        //     window.requestAnimationFrame(() => ele.style.animationPlayState = 'running');
+        // });
     }
 
 }

@@ -179,6 +179,7 @@ const KEYBOARD_ACTIONS: Map<string, KeyboardAction> = new Map([
     ['<', { key: ',', keyResult: '<', control: KeyboardControlKey.SHIFT, location: KeyboardControlLocation.LEFT }],
     ['>', { key: '.', keyResult: '>', control: KeyboardControlKey.SHIFT, location: KeyboardControlLocation.LEFT }],
     ['?', { key: '/', keyResult: '?', control: KeyboardControlKey.SHIFT, location: KeyboardControlLocation.LEFT }],
+    ['↵', { key: 'Enter', keyResult: 'Enter', control: KeyboardControlKey.NONE, location: KeyboardControlLocation.NONE }],
 ]);
     
 
