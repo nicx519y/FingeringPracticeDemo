@@ -53,6 +53,7 @@ export class FingeringPracticedComponent extends DelegatedEventTarget {
       return acc.concat(page.rows.map((row) => row.words));
     }, []).join('').split('');
     this.wordOffset = 0;
+    this._startTime = new Date();
   }
 
   _keyboardRightHandler = (event: CustomEvent) => {
