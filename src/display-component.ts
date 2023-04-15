@@ -116,11 +116,6 @@ export class DisplayComponent {
         window.requestAnimationFrame(() => {
             window.requestAnimationFrame(() => ele.classList.add('wf-class1'));
         });
-
-        // ele.style.animationPlayState = 'paused';
-        // window.requestAnimationFrame(() => {
-        //     window.requestAnimationFrame(() => ele.style.animationPlayState = 'running');
-        // });
     }
 
 }

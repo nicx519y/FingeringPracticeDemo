@@ -1,74 +1,74 @@
-import { KeyComponent } from './key-component';
-import { KeyboardAction, KeyboardActionEvent, KeyboardActionComponent, KeyboardControlKey, KeyboardControlLocation } from './keyboard-action-component';
+import { KeyComponent, KeyConfigInterface } from './key-component';
+import { KeyboardAction, KeyboardActionComponent, KeyboardControlKey, KeyboardControlLocation } from './keyboard-action-component';
 
-const KEYBOARD_CONFIG = [
+const KEYBOARD_CONFIG: KeyConfigInterface[][] = [
     [
-        { key: '`', subKey: '~', hasSubKey: true },
-        { key: '1', subKey: '!', hasSubKey: true },
-        { key: '2', subKey: '@', hasSubKey: true },
-        { key: '3', subKey: '#', hasSubKey: true },
-        { key: '4', subKey: '$', hasSubKey: true },
-        { key: '5', subKey: '%', hasSubKey: true },
-        { key: '6', subKey: '^', hasSubKey: true },
-        { key: '7', subKey: '&', hasSubKey: true },
-        { key: '8', subKey: '*', hasSubKey: true },
-        { key: '9', subKey: '(', hasSubKey: true },
-        { key: '0', subKey: ')', hasSubKey: true },
-        { key: '-', subKey: '_', hasSubKey: true },
-        { key: '=', subKey: '+', hasSubKey: true },
-        { key: 'Backspace', subKey: '', hasSubKey: false }
+        { key: '`', keyLabel: '`', subKey: '~', subKeyLabel: '~', hasSubKey: true },
+        { key: '1', keyLabel: '1', subKey: '!', subKeyLabel: '!', hasSubKey: true },
+        { key: '2', keyLabel: '2', subKey: '@', subKeyLabel: '@', hasSubKey: true },
+        { key: '3', keyLabel: '3', subKey: '#', subKeyLabel: '#', hasSubKey: true },
+        { key: '4', keyLabel: '4', subKey: '$', subKeyLabel: '$', hasSubKey: true },
+        { key: '5', keyLabel: '5', subKey: '%', subKeyLabel: '%', hasSubKey: true },
+        { key: '6', keyLabel: '6', subKey: '^', subKeyLabel: '^', hasSubKey: true },
+        { key: '7', keyLabel: '7', subKey: '&', subKeyLabel: '&', hasSubKey: true },
+        { key: '8', keyLabel: '8', subKey: '*', subKeyLabel: '*', hasSubKey: true },
+        { key: '9', keyLabel: '9', subKey: '(', subKeyLabel: '(', hasSubKey: true },
+        { key: '0', keyLabel: '0', subKey: ')', subKeyLabel: ')', hasSubKey: true },
+        { key: '-', keyLabel: '-', subKey: '_', subKeyLabel: '_', hasSubKey: true },
+        { key: '=', keyLabel: '=', subKey: '+', subKeyLabel: '+', hasSubKey: true },
+        { key: 'Backspace', keyLabel: '←', subKey: '', subKeyLabel: '', hasSubKey: false },
     ],
     [
-        { key: 'Tab', subKey: '', hasSubKey: false },
-        { key: 'q', subKey: '', hasSubKey: false },
-        { key: 'w', subKey: '', hasSubKey: false },
-        { key: 'e', subKey: '', hasSubKey: false },
-        { key: 'r', subKey: '', hasSubKey: false },
-        { key: 't', subKey: '', hasSubKey: false },
-        { key: 'y', subKey: '', hasSubKey: false },
-        { key: 'u', subKey: '', hasSubKey: false },
-        { key: 'i', subKey: '', hasSubKey: false },
-        { key: 'o', subKey: '', hasSubKey: false },
-        { key: 'p', subKey: '', hasSubKey: false },
-        { key: '[', subKey: '{', hasSubKey: true },
-        { key: ']', subKey: '}', hasSubKey: true },
-        { key: '\\', subKey: '|', hasSubKey: true }
+        { key: 'Tab', keyLabel: 'TAB', subKey: '', subKeyLabel: '', hasSubKey: false },
+        { key: 'q', keyLabel: 'Q', subKey: '', subKeyLabel: '', hasSubKey: false },
+        { key: 'w', keyLabel: 'W', subKey: '', subKeyLabel: '', hasSubKey: false },
+        { key: 'e', keyLabel: 'E', subKey: '', subKeyLabel: '', hasSubKey: false },
+        { key: 'r', keyLabel: 'R', subKey: '', subKeyLabel: '', hasSubKey: false },
+        { key: 't', keyLabel: 'T', subKey: '', subKeyLabel: '', hasSubKey: false },
+        { key: 'y', keyLabel: 'Y', subKey: '', subKeyLabel: '', hasSubKey: false },
+        { key: 'u', keyLabel: 'U', subKey: '', subKeyLabel: '', hasSubKey: false },
+        { key: 'i', keyLabel: 'I', subKey: '', subKeyLabel: '', hasSubKey: false },
+        { key: 'o', keyLabel: 'O', subKey: '', subKeyLabel: '', hasSubKey: false },
+        { key: 'p', keyLabel: 'P', subKey: '', subKeyLabel: '', hasSubKey: false },
+        { key: '[', keyLabel: '[', subKey: '{', subKeyLabel: '{', hasSubKey: true },
+        { key: ']', keyLabel: ']', subKey: '}', subKeyLabel: '}', hasSubKey: true },
+        { key: '\\', keyLabel: '\\', subKey: '|', subKeyLabel: '|', hasSubKey: true }
     ],
     [
-        { key: 'CapsLock', subKey: '', hasSubKey: false },
-        { key: 'a', subKey: '', hasSubKey: false },
-        { key: 's', subKey: '', hasSubKey: false },
-        { key: 'd', subKey: '', hasSubKey: false },
-        { key: 'f', subKey: '', hasSubKey: false },
-        { key: 'g', subKey: '', hasSubKey: false },
-        { key: 'h', subKey: '', hasSubKey: false },
-        { key: 'j', subKey: '', hasSubKey: false },
-        { key: 'k', subKey: '', hasSubKey: false },
-        { key: 'l', subKey: '', hasSubKey: false },
-        { key: ';', subKey: ':', hasSubKey: true },
-        { key: '\'', subKey: '"', hasSubKey: true },
-        { key: 'Enter', subKey: '', hasSubKey: false }
+        { key: 'CapsLock', keyLabel: 'CAPSLOCK', subKey: '', subKeyLabel: '', hasSubKey: false },
+        { key: 'a', keyLabel: 'A', subKey: '', subKeyLabel: '', hasSubKey: false },
+        { key: 's', keyLabel: 'S', subKey: '', subKeyLabel: '', hasSubKey: false },
+        { key: 'd', keyLabel: 'D', subKey: '', subKeyLabel: '', hasSubKey: false },
+        { key: 'f', keyLabel: 'F', subKey: '', subKeyLabel: '', hasSubKey: false },
+        { key: 'g', keyLabel: 'G', subKey: '', subKeyLabel: '', hasSubKey: false },
+        { key: 'h', keyLabel: 'H', subKey: '', subKeyLabel: '', hasSubKey: false },
+        { key: 'j', keyLabel: 'J', subKey: '', subKeyLabel: '', hasSubKey: false },
+        { key: 'k', keyLabel: 'K', subKey: '', subKeyLabel: '', hasSubKey: false },
+        { key: 'l', keyLabel: 'L', subKey: '', subKeyLabel: '', hasSubKey: false },
+        { key: ';', keyLabel: ';', subKey: ':', subKeyLabel: ':', hasSubKey: true },
+        { key: '\'', keyLabel: '\'', subKey: '"', subKeyLabel: '"', hasSubKey: true },
+        { key: 'Enter', keyLabel: '↵', subKey: '', subKeyLabel: '', hasSubKey: false },
     ],
     [
-        { key: 'Shift', subKey: '', hasSubKey: false },
-        { key: 'z', subKey: '', hasSubKey: false },
-        { key: 'x', subKey: '', hasSubKey: false },
-        { key: 'c', subKey: '', hasSubKey: false },
-        { key: 'v', subKey: '', hasSubKey: false },
-        { key: 'b', subKey: '', hasSubKey: false },
-        { key: 'n', subKey: '', hasSubKey: false },
-        { key: 'm', subKey: '', hasSubKey: false },
-        { key: ',', subKey: '<', hasSubKey: true },
-        { key: '.', subKey: '>', hasSubKey: true },
-        { key: '/', subKey: '?', hasSubKey: true },
-        { key: 'Shift', subKey: '', hasSubKey: false }
+        { key: 'Shift', keyLabel: 'SHIFT', subKey: '', subKeyLabel: '', hasSubKey: false },
+        { key: 'z', keyLabel: 'Z', subKey: '', subKeyLabel: '', hasSubKey: false },
+        { key: 'x', keyLabel: 'X', subKey: '', subKeyLabel: '', hasSubKey: false },
+        { key: 'c', keyLabel: 'C', subKey: '', subKeyLabel: '', hasSubKey: false },
+        { key: 'v', keyLabel: 'V', subKey: '', subKeyLabel: '', hasSubKey: false },
+        { key: 'b', keyLabel: 'B', subKey: '', subKeyLabel: '', hasSubKey: false },
+        { key: 'n', keyLabel: 'N', subKey: '', subKeyLabel: '', hasSubKey: false },
+        { key: 'm', keyLabel: 'M', subKey: '', subKeyLabel: '', hasSubKey: false },
+        { key: ',', keyLabel: ',', subKey: '<', subKeyLabel: '<', hasSubKey: true },
+        { key: '.', keyLabel: '.', subKey: '>', subKeyLabel: '>', hasSubKey: true },
+        { key: '/', keyLabel: '/', subKey: '?', subKeyLabel: '?', hasSubKey: true }, 
+        { key: 'Shift', keyLabel: 'SHIFT', subKey: '', subKeyLabel: '', hasSubKey: false },
     ],
     [
-        { key: 'Ctrl', subKey: '', hasSubKey: false },
-        { key: 'Alt', subKey: '', hasSubKey: false },
-        { key: ' ', subKey: '', hasSubKey: false },
-        { key: 'Alt', subKey: '', hasSubKey: false },
-        { key: 'Ctrl', subKey: '', hasSubKey: false }
+        { key: 'Ctrl', keyLabel: 'CTRL', subKey: '', subKeyLabel: '', hasSubKey: false },
+        { key: 'Alt', keyLabel: 'ALT', subKey: '', subKeyLabel: '', hasSubKey: false },
+        { key: ' ', keyLabel: ' ', subKey: '', subKeyLabel: '', hasSubKey: false },
+        { key: 'Alt', keyLabel: 'ALT', subKey: '', subKeyLabel: '', hasSubKey: false },
+        { key: 'Ctrl', keyLabel: 'CTRL', subKey: '', subKeyLabel: '', hasSubKey: false },
     ]
 ];
 
@@ -196,7 +196,7 @@ export class KeyboardComponent {
             const rowElement = document.createElement('div');
             rowElement.classList.add('row');
             row.forEach((keyConfig) => {
-                const key = new KeyComponent(keyConfig.key, keyConfig.subKey, keyConfig.hasSubKey);
+                const key = new KeyComponent(keyConfig);
                 rowElement.appendChild(key.element);
 
                 if(!this.keysList.has(keyConfig.key.toLocaleLowerCase())) {
