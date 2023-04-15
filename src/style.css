@@ -23,7 +23,7 @@ html, body {
     justify-content: center;
     align-items: center;
     font-family: 'Courier', sans-serif;
-}x
+}
 
 .display-panel .page {
     display: none;
@@ -74,13 +74,35 @@ html, body {
     color: white;
 }
 
-.wf-class1 {
-    animation-name: wordflash, wordhighlight, shake;
-    animation-duration: .4s, .2s, .6s;
-    animation-timing-function: linear, linear, ease-in-out;
-    animation-delay: 0s, .4s, 0s;
-    animation-fill-mode: none, forwards, none;
-    animation-iteration-count: 1, 1, 1;
+.wrong-word {
+    animation-name: shake;
+    animation-duration: .6s;
+    animation-timing-function: ease-in-out;
+    animation-delay: .4s, 0s;
+    animation-fill-mode: none;
+    animation-iteration-count: 1;
+    animation-play-state: running;
+}
+
+.wrong-word::after {
+    content: attr(data-word);
+    display: flex;
+    border-radius: .1em;
+    position: absolute;
+    width: inherit;
+    height: inherit;
+    justify-content: center;
+    align-items: center;
+    background-color: #F08080;
+    opacity: 0;
+
+    animation-name: shake, hideout;
+    animation-duration: .6s, 1s;
+    animation-fill-mode: none none;
+    animation-timing-function: ease-in-out, linear;
+    animation-delay: 0s, 0s;
+    animation-fill-mode: none, none;
+    animation-iteration-count: 1, 1;
     animation-play-state: running, running;
 }
 
@@ -92,13 +114,18 @@ html, body {
     }
 }
 
-@keyframes wordhighlight {  /* 高亮 */
+@keyframes hideout {
+    0% {
+        opacity: 1;
+    }
+    80% {
+        opacity: 1;
+    }
     100% {
-        background-color: #F08080;
-        border-color: red;
-        color: white;
+        opacity: 0;
     }
 }
+
 @keyframes shake { /* 震动 */
     10%, 90% { transform: translate3d(-.02em, 0, 0); }
     20%, 80% { transform: translate3d(+.04em, 0, 0); }
@@ -164,7 +191,6 @@ html, body {
     animation-fill-mode: none;
     animation-iteration-count: infinite;
     animation-play-state: running;
-    /* animation-timing-function: ease-out; */
 }
 
 .keyboard .key.highlight::before {

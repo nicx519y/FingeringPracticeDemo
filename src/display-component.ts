@@ -81,8 +81,7 @@ export class DisplayComponent {
 
         if(this._wordOffset < this._wordsElements.length && this._wordOffset >= 0) {
             this._wordsElements[this._wordOffset].classList.remove('active');
-            this._wordsElements[this._wordOffset].classList.remove('wf-class1');
-            this._wordsElements[this._wordOffset].classList.remove('wf-class2');
+            this._wordsElements[this._wordOffset].classList.remove('wrong-word');
         }
 
         if(offset > this._wordOffset) {
@@ -110,11 +109,14 @@ export class DisplayComponent {
     }
 
     //高亮闪烁active的word
-    highlightActiveWord() {
+    wrongNotice(word: string = '') {
         const ele = this._wordsElements[this._wordOffset];
-        ele.classList.remove('wf-class1');
+        //出错内容
+        ele.setAttribute('data-word', word);
+
+        ele.classList.remove('wrong-word');
         window.requestAnimationFrame(() => {
-            window.requestAnimationFrame(() => ele.classList.add('wf-class1'));
+            window.requestAnimationFrame(() => ele.classList.add('wrong-word'));
         });
     }
 

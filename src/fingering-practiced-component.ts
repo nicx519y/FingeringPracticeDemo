@@ -92,7 +92,8 @@ export class FingeringPracticedComponent extends DelegatedEventTarget {
       detail: event.detail,
     }));
 
-    this.display.highlightActiveWord();
+    //不是control键就提示错误内容
+    this.display.wrongNotice(['shift', 'ctrl', 'alt', 'backspace', 'tab', 'enter', 'capsLock'].indexOf(event.detail.key.toLowerCase()) < 0 ? event.detail.key : '');
     this._wrongAudio.play();
   }
 
