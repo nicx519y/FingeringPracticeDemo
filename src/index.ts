@@ -12,6 +12,12 @@ function main() {
             {
                 size: 50,
                 pages: [
+                    `Hello World!`,
+                ],
+            },
+            {
+                size: 50,
+                pages: [
                     `ff qq ff gg hh kk ww\nWW JJ LL OO PP\n!@#$%^&*( )_+`
                 ],
             },
