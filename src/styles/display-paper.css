@@ -1,0 +1,126 @@
+
+.paper-style.fingering-practiced {
+    display: flex;
+    flex-direction: column-reverse;
+    width: 100vw;
+    height: 100vh;
+    background-color: #FFFFF2;
+}
+
+.paper-style .display-panel {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Courier', sans-serif;
+}
+
+.paper-style .display-panel .page {
+    display: none;
+}
+
+.paper-style .display-panel .page.active {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.paper-style .display-panel .row {
+    width: 100vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    border-bottom: dashed 1px #eee;
+    height: 1.6em;
+}
+
+.paper-style .display-panel .row:first-child {
+    border-top: dashed 1px #eee;
+}
+
+.paper-style .display-panel .word {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 1.3em;
+    width: .8em;
+    margin: 0 .02em;
+    border-radius: .1em;
+    border: solid 1px #FFFFF2;
+}
+
+.paper-style .display-panel .word.complete {
+    background-color: #eee;
+    border-color: #eee;
+    color: black;
+}
+
+.paper-style .display-panel .word.active {
+    background-color: green;
+    border-color: green;
+    color: white;
+}
+
+.paper-style .wrong-word {
+    animation-name: shake;
+    animation-duration: .6s;
+    animation-timing-function: ease-in-out;
+    animation-delay: .4s, 0s;
+    animation-fill-mode: none;
+    animation-iteration-count: 1;
+    animation-play-state: running;
+}
+
+.paper-style .wrong-word::after {
+    content: attr(data-word);
+    display: flex;
+    border-radius: .1em;
+    position: absolute;
+    width: inherit;
+    height: inherit;
+    justify-content: center;
+    align-items: center;
+    background-color: #F08080;
+    opacity: 0;
+
+    animation-name: shake, hideout;
+    animation-duration: .6s, 1s;
+    animation-fill-mode: none none;
+    animation-timing-function: ease-in-out, linear;
+    animation-delay: 0s, 0s;
+    animation-fill-mode: none, none;
+    animation-iteration-count: 1, 1;
+    animation-play-state: running, running;
+}
+
+@keyframes wordflash {
+    50% {
+        background-color: white;
+        border-color: white;
+        color: black;
+    }
+}
+
+@keyframes hideout {
+    0% {
+        opacity: 1;
+    }
+    80% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+@keyframes shake { /* 震动 */
+    10%, 90% { transform: translate3d(-.02em, 0, 0); }
+    20%, 80% { transform: translate3d(+.04em, 0, 0); }
+    30%, 70% { transform: translate3d(-.08em, 0, 0); }
+    40%, 60% { transform: translate3d(+.08em, 0, 0); }
+    50% { transform: translate3d(-.08em, 0, 0); }
+}

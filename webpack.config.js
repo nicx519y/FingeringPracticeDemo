@@ -49,6 +49,7 @@ module.exports = {
     plugins: [
         new HtmlWebpackPlugin({
             title: '指法练习',
+            template: path.join(__dirname,'./src/index.html'),
         })
     ],
 };

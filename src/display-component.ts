@@ -53,27 +53,6 @@ export class DisplayComponent {
         this._setPageActive(0);
     }
 
-    //设置某页可见
-    _setPageActive(page: number) {
-        if(page === this._showenPage || page < 0 || page > this._pagesElements.length - 1) return;
-        this._pagesElements.forEach((pageElement) => {
-            pageElement.classList.remove('active');
-        });
-        this._pagesElements[page] && this._pagesElements[page].classList.add('active');
-        this._showenPage = page;
-    }
-
-    //获取某个offset对应的页码
-    _getPageNumberByOffset(offset: number): number {
-        let page = 0;
-        let acc = 0;
-        while(acc < offset) {
-            acc += this._wordsCounts[page];
-            page++;
-        }
-        return page - 1;
-    }
-    
     //设置到某个word为止高亮
     set wordOffset(offset: number) {
 
@@ -119,5 +98,28 @@ export class DisplayComponent {
             window.requestAnimationFrame(() => ele.classList.add('wrong-word'));
         });
     }
+
+    //设置某页可见
+    _setPageActive(page: number) {
+        if(page === this._showenPage || page < 0 || page > this._pagesElements.length - 1) return;
+        this._pagesElements.forEach((pageElement) => {
+            pageElement.classList.remove('active');
+        });
+        this._pagesElements[page] && this._pagesElements[page].classList.add('active');
+        this._showenPage = page;
+    }
+
+    //获取某个offset对应的页码
+    _getPageNumberByOffset(offset: number): number {
+        let page = 0;
+        let acc = 0;
+        while(acc < offset) {
+            acc += this._wordsCounts[page];
+            page++;
+        }
+        return page - 1;
+    }
+    
+    
 
 }

@@ -1,0 +1,121 @@
+
+.terminal-style.fingering-practiced {
+    display: flex;
+    flex-direction: column-reverse;
+    width: 100vw;
+    height: 100vh;
+    background-color: black;
+}
+
+.terminal-style .display-panel {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Courier New', sans-serif;
+}
+
+.terminal-style .display-panel .page {
+    display: none;
+}
+
+.terminal-style .display-panel .page.active {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.terminal-style .display-panel .row {
+    width: 100vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 1.6em;
+}
+
+.terminal-style .display-panel .word {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 1.3em;
+    width: .8em;
+    color: silver;
+}
+
+.terminal-style .display-panel .word.complete {
+    color: white;
+}
+
+.terminal-style .display-panel .word.active {
+    background-color: white;
+    color: black;
+
+    animation-name: terminal-active-word;
+    animation-duration: 1s;
+    animation-fill-mode: none;
+    animation-iteration-count: infinite;
+    animation-play-state: running;
+} 
+
+@keyframes terminal-active-word {
+    50% {
+        background-color: black;
+        color: silver;
+    }
+}
+
+.terminal-style .wrong-word {
+    animation-name: terminal-shake;
+    animation-duration: .6s;
+    animation-timing-function: ease-in-out;
+    animation-delay: .4s, 0s;
+    animation-fill-mode: none;
+    animation-iteration-count: 1;
+    animation-play-state: running;
+}
+
+.terminal-style .wrong-word::after {
+    content: attr(data-word);
+    display: flex;
+    position: absolute;
+    width: inherit;
+    height: inherit;
+    justify-content: center;
+    align-items: center;
+    background-color: red;
+    color: white;
+    opacity: 0;
+
+    animation-name: terminal-shake, terminal-hideout;
+    animation-duration: .6s, 1s;
+    animation-fill-mode: none none;
+    animation-timing-function: ease-in-out, linear;
+    animation-delay: 0s, 0s;
+    animation-fill-mode: none, none;
+    animation-iteration-count: 1, 1;
+    animation-play-state: running, running;
+}
+
+@keyframes terminal-hideout {
+    0% {
+        opacity: 1;
+    }
+    80% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+@keyframes terminal-shake { /* 震动 */
+    10%, 90% { transform: translate3d(-.02em, 0, 0); }
+    20%, 80% { transform: translate3d(+.04em, 0, 0); }
+    30%, 70% { transform: translate3d(-.08em, 0, 0); }
+    40%, 60% { transform: translate3d(+.08em, 0, 0); }
+    50% { transform: translate3d(-.08em, 0, 0); }
+}

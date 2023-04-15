@@ -46,7 +46,7 @@ const KEYBOARD_CONFIG: KeyConfigInterface[][] = [
         { key: 'k', keyLabel: 'K', subKey: '', subKeyLabel: '', hasSubKey: false },
         { key: 'l', keyLabel: 'L', subKey: '', subKeyLabel: '', hasSubKey: false },
         { key: ';', keyLabel: ';', subKey: ':', subKeyLabel: ':', hasSubKey: true },
-        { key: '\'', keyLabel: '\'', subKey: '"', subKeyLabel: '"', hasSubKey: true },
+        { key: '\'', keyLabel: '\'', subKey: '&quot;', subKeyLabel: '&quot;', hasSubKey: true },
         { key: 'Enter', keyLabel: '↵', subKey: '', subKeyLabel: '', hasSubKey: false },
     ],
     [

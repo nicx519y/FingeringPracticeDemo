@@ -1,0 +1,201 @@
+
+.vintage-style {
+    font-family: 'Verdana', sans-serif;
+    padding: .8em;
+    display: flex;
+    flex: 0;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: .1em .1em .5em rgba(0, 0, 0, 0.3);
+    background-color: #333;
+    width: 50em;
+    border: solid 1px black;
+    border-radius: .2em;
+    margin: 0 auto;
+}
+
+.vintage-style .row {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.vintage-style .key {
+    display: flex;
+    flex-direction: column;
+    width: 2.6em;
+    height: 2.6em;
+    border: solid 1px black;
+    margin: .05em;
+    border-radius: .3em;
+    background-color: #111;
+    color: white;
+    padding: 0 .3em .6em .3em;
+    /* box-shadow: .1em .1em .2em rgba(0, 0, 0, 0.7); */
+}
+
+.vintage-style .key .key-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    width: 100%;
+    height: 100%;
+    border-radius: .2em;
+    background-color: #444;
+}
+
+.vintage-style .key.highlight .key-container {
+    background-color: silver;
+    border-color: silver;
+    color: white;
+}
+
+.vintage-style .key.highlight::after {
+    content: '';
+    position: absolute;
+    width: inherit;
+    height: inherit;
+    border-radius: .2em;
+    box-shadow: 0em 0em 0em 0em rgba(192, 192, 192, 0);
+
+    animation-name: vintage-keyHighlight1;
+    animation-duration: 2s;
+    animation-delay: 0s;
+    animation-fill-mode: none;
+    animation-iteration-count: infinite;
+    animation-play-state: running;
+}
+
+.vintage-style .key.highlight::before {
+    content: '';
+    position: absolute;
+    width: inherit;
+    height: inherit;
+    border-radius: .2em;
+    box-shadow: 0em 0em 0em 0em rgba(192, 192, 192, 0);
+
+    animation-name: vintage-keyHighlight2;
+    animation-duration: 2s;
+    animation-delay: .8s;
+    animation-fill-mode: none;
+    animation-iteration-count: infinite;
+    animation-play-state: running;
+    animation-timing-function: ease-out;
+}
+
+.vintage-style .key.highlight .key-container {
+    background-color: green;
+}
+
+@keyframes vintage-keyHighlight1 {
+    65% {
+        box-shadow: 0em 0em 0em 2em rgba(192, 192, 192, .3);
+    }
+    100% {
+        box-shadow: 0em 0em 0em 3em rgba(192, 192, 192, 0);
+    }
+}
+
+@keyframes vintage-keyHighlight2 {
+    65% {
+        box-shadow: 0em 0em 0em 1.8em rgba(192, 192, 192, .3);
+    }
+    100% {
+        box-shadow: 0em 0em 0em 2.5em rgba(192, 192, 192, 0);
+    }
+}
+
+.vintage-style .key .key-label {
+    display: flex;
+    font-size: 1em;
+    height: 100%;
+    width: 100%;
+    flex-direction: column;
+}
+
+.vintage-style .key-label::after {
+    content: attr(data-key);
+    display: flex;
+    align-items: center;
+    text-transform: uppercase;
+    transform: scale(.8) translateY(.1em) translateX(.1em);
+    font-style: italic;
+}
+
+.vintage-style .key-label::before {
+    content: attr(data-subkey);
+    display: flex;
+    align-items: center;
+    transform: scale(.6) translateY(.1em) translateX(-.2em);
+    font-style: italic;
+}
+
+.vintage-style .key-special .key-label {
+    height: auto;
+}
+
+.vintage-style .key-special .key-label::after {
+    transform: scale(.5);
+    text-transform: none;
+}
+
+.vintage-style .key-shift {
+    width: 7em;
+}
+
+.vintage-style .key-shift .key-label::after {
+    transform:scale(.6) translate(-1.8em, .1em);
+}
+
+.vintage-style .key-backspace {
+    width: 4.4em;
+}
+
+.vintage-style .key-space {
+    width: 30.5em;
+}
+
+.vintage-style .key-enter {
+    width: 5em;
+}
+
+.vintage-style .key-enter .key-label::after {
+    transform:scale(.6) translate(-1.3em, .1em);
+}
+
+.vintage-style .key-tab {
+    width: 4.5em;
+}
+
+.vintage-style .key-tab .key-label::after {
+    transform:scale(.6) translate(-1em, .1em);
+}
+
+
+.vintage-style .key-capslock {
+    width: 5.6em;
+}
+
+.vintage-style .key-capslock .key-label::after {
+    transform:scale(.6) translate(-1.4em, .1em);
+}
+
+.vintage-style .key-alt {
+    width: 5em;
+}
+
+.vintage-style .key-alt .key-label::after {
+    transform:scale(.6) translate(-1.1em, .1em);
+}
+
+.vintage-style .key-ctrl .key-label::after {
+    transform:scale(.6) translate(-.4em, .1em);
+}
+
+.vintage-style .key-backspace .key-label::after {
+    transform:scale(.6) translate(-.9em, .1em);
+}

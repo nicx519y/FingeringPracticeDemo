@@ -28,16 +28,16 @@ export class KeyComponent {
             this.element.classList.add('key-special');
         }
 
-        if(config.hasSubKey) {
-            this.element.innerHTML = `
-                <div class="sub-key-label" >${config.subKeyLabel}</div>
-                <div class="key-label">${config.keyLabel}</div>
-            `;
-        } else {
-            this.element.innerHTML = `
-                <div class="key-label">${config.keyLabel}</div>
-            `;
-        }
+        this.element.innerHTML = `
+            <div class="key-container">
+                <div class="key-label" 
+                    data-key="${config.key}" 
+                    data-key-label="${config.keyLabel}" 
+                    data-subkey="${config.subKey}" 
+                    data-subkey-label="${config.subKeyLabel}" 
+                    ></div>
+            </div>
+        `;
     }
 
     set highlight(isHighlighted: boolean) {

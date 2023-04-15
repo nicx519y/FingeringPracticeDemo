@@ -1,10 +1,10 @@
 import * as _ from 'lodash';
-import './style.css';
+import './styles/style.css';
 
-import { FingeringPracticedComponent, FingeringPracticedEvent } from './fingering-practiced-component';
+import { FingeringPracticedComponent, FingeringPracticedEvent, KeyboardStyleMode, DisplayStyleMode } from './fingering-practiced-component';
 import { DisplayConfigInterface } from './display-config';
 
-(function main() {
+function main() {
     const app = new FingeringPracticedComponent();
     document.body.appendChild(app.element);
 
@@ -13,6 +13,18 @@ import { DisplayConfigInterface } from './display-config';
                 size: 50,
                 pages: [
                     `ff qq ff gg hh kk ww\nWW JJ LL OO PP\n!@#$%^&*( )_+`
+                ],
+            },
+            {
+                size: 20,
+                pages: [
+                    `If I could save time in a bottle\nThe first thing that I'd like to do\nIs to save every day till eternity passes away\nJust to spend them with you.`,
+                ],
+            },
+            {
+                size: 20,
+                pages: [
+                    `Thank you for comforting me when I'm sad\nThank you for being there when I'm mad\nThank you for being my friend\nThank you for being there till the end.`,
                 ],
             }
         ];
@@ -28,7 +40,6 @@ import { DisplayConfigInterface } from './display-config';
 
         if(result === true) {
             num = (num + 1) % configs.length;
-            console.log(num);
             app.setContent(configs[num]);
         } else {
             app.setContent(configs[num]);
@@ -37,7 +48,32 @@ import { DisplayConfigInterface } from './display-config';
 
     app.setContent(configs[num]);
 
-})();
+    const keyboardStyleSelect = document.getElementById('keyboard-style-select') as HTMLSelectElement;
+    const displayStyleSelect = document.getElementById('display-style-select') as HTMLSelectElement;
+
+    KeyboardStyleMode.forEach((value, key) => {
+        const option = document.createElement('option');
+        option.value = value;
+        option.innerText = key;
+        keyboardStyleSelect.appendChild(option);
+    });
+
+    DisplayStyleMode.forEach((value, key) => {
+        const option = document.createElement('option');
+        option.value = value;
+        option.innerText = key;
+        displayStyleSelect.appendChild(option);
+    });
+
+    keyboardStyleSelect.addEventListener('change', (event: Event) => 
+        app.changeKeyboardStyleMode((event.target as HTMLSelectElement).value));
+    
+    displayStyleSelect.addEventListener('change', (event: Event) => 
+        app.changeDisplayStyleMode((event.target as HTMLSelectElement).value));
+
+};
+
+window.onload = () => main();
 
 
 
