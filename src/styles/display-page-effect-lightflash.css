@@ -5,7 +5,7 @@
     animation-play-state: running, running;
     animation-fill-mode: forwards, none;
     animation-iteration-count: 1, infinite;
-    animation-timing-function: steps(10, start), linear;
+    /* animation-timing-function: steps(10, start), linear; */
 }
 
 .display-panel.effect-lightflash-out .page.hide .word {
@@ -15,7 +15,7 @@
     animation-play-state: running;
     animation-fill-mode: forwards;
     animation-iteration-count: 1;
-    animation-timing-function: steps(10, start);
+    /* animation-timing-function: steps(10, start); */
     animation-direction: reverse;
     
 }
