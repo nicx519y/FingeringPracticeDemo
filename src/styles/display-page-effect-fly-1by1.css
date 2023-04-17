@@ -1,0 +1,42 @@
+.display-panel.effect-fly-in .page.show .word {
+    opacity: 0;
+}
+
+
+.display-panel.effect-fly-in .page.show .word.show {
+    animation-name: effect-fly-in;
+    animation-duration: .5s;
+    animation-play-state: running;
+    animation-fill-mode: forwards;
+    animation-iteration-count: 1;
+}
+
+.display-panel.effect-fly-out .page.hide .word.hide {
+    animation-name: effect-fly-out;
+    animation-duration: .5s;
+    animation-play-state: running;
+    animation-fill-mode: forwards;
+    animation-iteration-count: 1;
+}
+
+@keyframes effect-fly-in {
+    0% {
+        opacity: 0;
+        transform: translateX(-50vw);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes effect-fly-out {
+    0% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+    100% {
+        opacity: 0;
+        transform: translateX(50vw);
+    }
+}

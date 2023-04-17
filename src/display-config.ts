@@ -29,8 +29,10 @@ export class DisplayConfig {
             size: config.size,
             pages: config.pages.map((page) => {
                 return {
-                    rows: page.replace(/\n/g, '↵\n').split('\n').map((row) => { 
-                        return { words: row }; 
+                    rows: page.replace(/\n/g, '↵\n').split('\n')
+                    .filter((row) => row.trim() !== '')
+                    .map((row) => { 
+                        return { words: row.trim() }; 
                     }),
                 };
             }),

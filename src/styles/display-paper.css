@@ -1,30 +1,12 @@
 
 .paper-style.fingering-practiced {
-    display: flex;
-    flex-direction: column-reverse;
-    width: 100vw;
-    height: 100vh;
     background-color: #FFFFF2;
 }
 
 .paper-style .display-panel {
-    display: flex;
-    flex: 1;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
-    font-family: 'Courier', sans-serif;
-}
-
-.paper-style .display-panel .page {
-    display: none;
-}
-
-.paper-style .display-panel .page.active {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    font-family: 'Courier New', sans-serif;
 }
 
 .paper-style .display-panel .row {
@@ -49,34 +31,43 @@
     height: 1.3em;
     width: .8em;
     margin: 0 .02em;
+}
+
+.paper-style .display-panel .word::before {
+    display: flex;
+    content: attr(data-word);
+    justify-content: center;
+    align-items: center;
+    width: inherit;
+    height: inherit;
     border-radius: .1em;
     border: solid 1px #FFFFF2;
 }
 
-.paper-style .display-panel .word.complete {
+.paper-style .display-panel .word.complete::before {
     background-color: #eee;
     border-color: #eee;
     color: black;
 }
 
-.paper-style .display-panel .word.active {
+.paper-style .display-panel .word.active::before {
     background-color: green;
     border-color: green;
     color: white;
 }
 
-.paper-style .wrong-word {
-    animation-name: shake;
-    animation-duration: .6s;
-    animation-timing-function: ease-in-out;
-    animation-delay: .4s, 0s;
-    animation-fill-mode: none;
+.paper-style .display-panel .word.wrong-word::before {
+    opacity: 0;
+    animation-name: paper-hidein;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
     animation-iteration-count: 1;
     animation-play-state: running;
+    animation-delay: 0s;
 }
 
 .paper-style .wrong-word::after {
-    content: attr(data-word);
+    content: attr(data-wrong-word);
     display: flex;
     border-radius: .1em;
     position: absolute;
@@ -85,9 +76,10 @@
     justify-content: center;
     align-items: center;
     background-color: #F08080;
+    color: white;
     opacity: 0;
 
-    animation-name: shake, hideout;
+    animation-name: paper-shake, paper-hideout;
     animation-duration: .6s, 1s;
     animation-fill-mode: none none;
     animation-timing-function: ease-in-out, linear;
@@ -97,15 +89,7 @@
     animation-play-state: running, running;
 }
 
-@keyframes wordflash {
-    50% {
-        background-color: white;
-        border-color: white;
-        color: black;
-    }
-}
-
-@keyframes hideout {
+@keyframes paper-hideout {
     0% {
         opacity: 1;
     }
@@ -117,7 +101,20 @@
     }
 }
 
-@keyframes shake { /* 震动 */
+
+@keyframes paper-hidein {
+    0% {
+        opacity: 0;
+    }
+    90% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes paper-shake { /* 震动 */
     10%, 90% { transform: translate3d(-.02em, 0, 0); }
     20%, 80% { transform: translate3d(+.04em, 0, 0); }
     30%, 70% { transform: translate3d(-.08em, 0, 0); }

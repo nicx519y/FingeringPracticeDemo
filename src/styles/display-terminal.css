@@ -1,30 +1,12 @@
 
 .terminal-style.fingering-practiced {
-    display: flex;
-    flex-direction: column-reverse;
-    width: 100vw;
-    height: 100vh;
     background-color: black;
 }
 
 .terminal-style .display-panel {
-    display: flex;
-    flex: 1;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
     font-family: 'Courier New', sans-serif;
-}
-
-.terminal-style .display-panel .page {
-    display: none;
-}
-
-.terminal-style .display-panel .page.active {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
 }
 
 .terminal-style .display-panel .row {
@@ -42,24 +24,32 @@
     justify-content: center;
     align-items: center;
     height: 1.3em;
-    width: .8em;
-    color: silver;
+    width: .6em;
+    color: #999;
 }
 
-.terminal-style .display-panel .word.complete {
+.terminal-style .display-panel .word::before {
+    content: attr(data-word);
+    display: flex;
+    width: inherit;
+    height: inherit;
+    justify-content: center;
+    align-items: center;
+}
+
+.terminal-style .display-panel .word.complete::before {
     color: white;
 }
 
-.terminal-style .display-panel .word.active {
+.terminal-style .display-panel .word.active::before {
     background-color: white;
     color: black;
-
     animation-name: terminal-active-word;
     animation-duration: 1s;
     animation-fill-mode: none;
     animation-iteration-count: infinite;
     animation-play-state: running;
-} 
+}
 
 @keyframes terminal-active-word {
     50% {
@@ -68,18 +58,18 @@
     }
 }
 
-.terminal-style .wrong-word {
-    animation-name: terminal-shake;
-    animation-duration: .6s;
-    animation-timing-function: ease-in-out;
-    animation-delay: .4s, 0s;
-    animation-fill-mode: none;
-    animation-iteration-count: 1;
-    animation-play-state: running;
+.terminal-style .display-panel .word.wrong-word::before {
+    opacity: 0;
+    animation-name: terminal-hidein, terminal-active-word;
+    animation-duration: 1s, 1s;
+    animation-fill-mode: forwards, none;
+    animation-iteration-count: 1, infinite;
+    animation-play-state: running, running;
+    animation-delay: 0s, 1s;
 }
 
 .terminal-style .wrong-word::after {
-    content: attr(data-word);
+    content: attr(data-wrong-word);
     display: flex;
     position: absolute;
     width: inherit;
@@ -109,6 +99,18 @@
     }
     100% {
         opacity: 0;
+    }
+}
+
+@keyframes terminal-hidein {
+    0% {
+        opacity: 0;
+    }
+    90% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
     }
 }
 

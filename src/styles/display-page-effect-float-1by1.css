@@ -1,0 +1,54 @@
+.display-panel.effect-float-in .page.show .word {
+    opacity: 0;
+}
+
+
+.display-panel.effect-float-in .page.show .word.show {
+    animation-name: effect-float-in;
+    animation-duration: .3s;
+    animation-play-state: running;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+    animation-iteration-count: 1;
+}
+
+.display-panel.effect-float-out .page.hide .word.hide {
+    animation-name: effect-float-out;
+    animation-duration: .3s;
+    animation-timing-function: ease-in;
+    animation-play-state: running;
+    animation-fill-mode: forwards;
+    animation-iteration-count: 1;
+}
+
+@keyframes effect-float-in {
+    0% {
+        opacity: 0;
+        transform: translateY(50vh);
+    }
+    70% {
+        opacity: .7;
+        transform: translateY(-6vh);
+    }
+
+    85% {
+        opacity: .8;
+        transform: translateY(3vh);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes effect-float-out {
+    0% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(50vh);
+    }
+}

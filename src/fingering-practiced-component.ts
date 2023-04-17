@@ -8,15 +8,40 @@ import { KeyboardActionEvent } from './keyboard-action-component';
 import { DelegatedEventTarget } from './delegated-event-target';
 import { MyAudio } from './my-audio';
 
+export enum KeyboardStyleMode {
+  VINTAGE = 'vintage-style',
+  MAC = 'mac-style',
+}
 
-export const KeyboardStyleMode: Map<string, string> = new Map([ 
-  ['VINTAGE', 'vintage-style'], 
-  ['MAC', 'mac-style'] 
-]);
+export enum DisplayStyleMode {
+  TERMINAL = 'terminal-style',
+  PAPER = 'paper-style',
+}
 
-export const DisplayStyleMode: Map<string, string> = new Map([ 
-  ['TERMINAL', 'terminal-style'], 
-  ['PAPER', 'paper-style']
+export enum DisplayPageInEffect {
+  NONE = 'none',
+  FADE = 'fade',
+  FLY = 'fly',
+  FLOAT = 'float',
+}
+
+export enum DisplayPageOutEffect {
+  NONE = 'none',
+  FADE = 'fade',
+  FLY = 'fly',
+  FLOAT = 'float',
+}
+
+interface StyleMode {
+  keyboard: KeyboardStyleMode;
+  display: DisplayStyleMode;
+  effectIn: DisplayPageInEffect;
+  effectOut: DisplayPageOutEffect;
+}
+
+export const StyleModes: Map<string, StyleMode> = new Map([
+  ['TERMINAL', { keyboard: KeyboardStyleMode.VINTAGE, display: DisplayStyleMode.TERMINAL, effectIn: DisplayPageInEffect.FLOAT, effectOut: DisplayPageOutEffect.FLOAT }],
+  ['VINTAGE', { keyboard: KeyboardStyleMode.MAC, display: DisplayStyleMode.PAPER, effectIn: DisplayPageInEffect.FLY, effectOut: DisplayPageOutEffect.FLY }],
 ]);
 
 export enum FingeringPracticedEvent {
@@ -37,8 +62,12 @@ export class FingeringPracticedComponent extends DelegatedEventTarget {
   _rightCount: number = 0;
   _wrongAudio: MyAudio = new MyAudio(wrongMp3, 0, 1);
   _keyAudio: MyAudio = new MyAudio(keyMp3, 1.115, 1.5);
-  _currKeyboardStyleMode: string = KeyboardStyleMode.get('VINTAGE');
-  _currDisplayStyleMode: string = DisplayStyleMode.get('TERMINAL');
+  _currKeyboardStyleMode: KeyboardStyleMode = KeyboardStyleMode.VINTAGE;
+  _currDisplayStyleMode: DisplayStyleMode = DisplayStyleMode.TERMINAL;
+  _currPageInEffectMode: DisplayPageInEffect = DisplayPageInEffect.FLOAT;
+  _currPageOutEffectMode: DisplayPageOutEffect = DisplayPageOutEffect.FLOAT;
+
+  _currStyleMode: string = 'TERMINAL';
 
   constructor() {
     super();
@@ -54,20 +83,39 @@ export class FingeringPracticedComponent extends DelegatedEventTarget {
     this.element.appendChild(this.keyboard.element);
     this.element.appendChild(this.display.element);
 
-    this.changeDisplayStyleMode(this._currDisplayStyleMode);
-    this.changeKeyboardStyleMode(this._currKeyboardStyleMode);
+    this.changeStyleMode(this._currStyleMode);
   }
 
-  changeKeyboardStyleMode(mode: string) {
+  changeKeyboardStyleMode(mode: KeyboardStyleMode) {
     this.keyboard.element.classList.remove(this._currKeyboardStyleMode);
+    this.keyboard.element.classList.add(mode);
     this._currKeyboardStyleMode = mode;
-    this.keyboard.element.classList.add(this._currKeyboardStyleMode);
   }
 
-  changeDisplayStyleMode(mode: string) {
+  changeDisplayStyleMode(mode: DisplayStyleMode) {
     this.element.classList.remove(this._currDisplayStyleMode);
+    this.element.classList.add(mode);
     this._currDisplayStyleMode = mode;
-    this.element.classList.add(this._currDisplayStyleMode);
+  }
+
+  changePageInEffectMode(mode: DisplayPageInEffect) {
+    this.display.element.classList.remove(`effect-${this._currPageInEffectMode}-in`);
+    this.display.element.classList.add(`effect-${mode}-in`);
+    this._currPageInEffectMode = mode;
+  }
+
+  changePageOutEffectMode(mode: DisplayPageOutEffect) {
+    this.display.element.classList.remove(`effect-${this._currPageOutEffectMode}-out`);
+    this.display.element.classList.add(`effect-${mode}-out`);
+    this._currPageOutEffectMode = mode;
+  }
+
+  changeStyleMode(mode: string) {
+    const m = StyleModes.get(mode);
+    this.changeKeyboardStyleMode(m.keyboard);
+    this.changeDisplayStyleMode(m.display);
+    this.changePageInEffectMode(m.effectIn);
+    this.changePageOutEffectMode(m.effectOut);
   }
 
   //设置显示区域内容

@@ -1,7 +1,7 @@
 import * as _ from 'lodash';
 import './styles/style.css';
 
-import { FingeringPracticedComponent, FingeringPracticedEvent, KeyboardStyleMode, DisplayStyleMode } from './fingering-practiced-component';
+import { FingeringPracticedComponent, FingeringPracticedEvent, StyleModes } from './fingering-practiced-component';
 import { DisplayConfigInterface } from './display-config';
 
 function main() {
@@ -12,27 +12,30 @@ function main() {
             {
                 size: 50,
                 pages: [
-                    `Hello World!`,
+                    `Hello World!\n`,
+                    `Getting Start!\n`,
                 ],
             },
             {
-                size: 50,
+                size: 40,
                 pages: [
-                    `ff qq ff gg hh kk ww\nWW JJ LL OO PP\n!@#$%^&*( )_+`
+                    `From fairest creatures we desire increase,\n`,
+                    `That thereby beauty's rose might never die,\n`,
+                    `But as the riper should by time decease,\n`,
+                    `His tender heir might bear his memory:\n`,
+                    `But thou contracted to thine own bright eyes,\n`,
+                    `Feed'st thy light's flame with self-substantial fuel,\n`,
+                    `Making a famine where abundance lies,\n`,
+                    `Thy self thy foe, to thy sweet self too cruel.\n`,
+                    `Thou that art now the world's fresh ornament,\n`,
+                    `And only herald to the gaudy spring,\n`,
+                    `Within thine own bud buriest thy content,\n`,
+                    `And tender churl mak'st waste in niggarding:\n`,
+                    `Pity the world, or else this glutton be,\n`,
+                    `To eat the world's due, by the grave and thee.\n`,
+
                 ],
             },
-            {
-                size: 20,
-                pages: [
-                    `If I could save time in a bottle\nThe first thing that I'd like to do\nIs to save every day till eternity passes away\nJust to spend them with you.`,
-                ],
-            },
-            {
-                size: 20,
-                pages: [
-                    `Thank you for comforting me when I'm sad\nThank you for being there when I'm mad\nThank you for being my friend\nThank you for being there till the end.`,
-                ],
-            }
         ];
 
     let num: number = 0;
@@ -54,28 +57,17 @@ function main() {
 
     app.setContent(configs[num]);
 
-    const keyboardStyleSelect = document.getElementById('keyboard-style-select') as HTMLSelectElement;
-    const displayStyleSelect = document.getElementById('display-style-select') as HTMLSelectElement;
+    const styleSelect = document.getElementById('style-select') as HTMLSelectElement;
 
-    KeyboardStyleMode.forEach((value, key) => {
+    StyleModes.forEach((value, key) => {
         const option = document.createElement('option');
-        option.value = value;
+        option.value = key;
         option.innerText = key;
-        keyboardStyleSelect.appendChild(option);
+        styleSelect.appendChild(option);
     });
 
-    DisplayStyleMode.forEach((value, key) => {
-        const option = document.createElement('option');
-        option.value = value;
-        option.innerText = key;
-        displayStyleSelect.appendChild(option);
-    });
-
-    keyboardStyleSelect.addEventListener('change', (event: Event) => 
-        app.changeKeyboardStyleMode((event.target as HTMLSelectElement).value));
-    
-    displayStyleSelect.addEventListener('change', (event: Event) => 
-        app.changeDisplayStyleMode((event.target as HTMLSelectElement).value));
+    styleSelect.addEventListener('change', (event: Event) => 
+        app.changeStyleMode((event.target as HTMLSelectElement).value));
 
 };
 

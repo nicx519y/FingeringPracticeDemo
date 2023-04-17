@@ -1,0 +1,29 @@
+.display-panel.effect-fade-in .page.show .word {
+    opacity: 0;
+    animation-name: effect-fade-in;
+    animation-duration: 1s;
+    animation-play-state: running;
+    animation-fill-mode: forwards;
+    animation-iteration-count: 1;
+}
+
+.display-panel.effect-fade-out .page.hide .word {
+    opacity: 1;
+    animation-name: effect-fade-out;
+    animation-duration: 1s;
+    animation-play-state: running;
+    animation-fill-mode: forwards;
+    animation-iteration-count: 1;
+}
+
+@keyframes effect-fade-in {
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes effect-fade-out {
+    100% {
+        opacity: 0;
+    }
+}

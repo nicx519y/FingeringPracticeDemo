@@ -1,4 +1,5 @@
 import {  DisplayConfig, DisplayViewModel } from './display-config';
+import { AnimationIterator } from './animation-Iterator';
 
 export class DisplayComponent {
 
@@ -9,6 +10,7 @@ export class DisplayComponent {
     _pagesElements: HTMLElement[] = [];
     _wordsElements: HTMLElement[] = [];
     _showenPage: number = -1;
+    _effectDuration: number = 800;
 
     constructor() {
         this.element = document.createElement('div');
@@ -24,13 +26,15 @@ export class DisplayComponent {
         model.pages.forEach((page) => {
             const pageElement = document.createElement('div');
             pageElement.classList.add('page');
-            page.rows.forEach((row) => {
+            page.rows.forEach((row, rowIdx) => {
                 const rowElement = document.createElement('div');
+                rowElement.setAttribute('data-row-index', rowIdx.toString());
                 rowElement.classList.add('row');
-                row.words.split('').forEach((word) => {
+                row.words.split('').forEach((word, wordIdx) => {
                     const wordElement = document.createElement('span');
+                    wordElement.setAttribute('data-word-index', wordIdx.toString());
                     wordElement.classList.add('word');
-                    wordElement.innerHTML = word;
+                    wordElement.setAttribute('data-word', word);
                     rowElement.appendChild(wordElement);
                 });
 
@@ -91,7 +95,7 @@ export class DisplayComponent {
     wrongNotice(word: string = '') {
         const ele = this._wordsElements[this._wordOffset];
         //出错内容
-        ele.setAttribute('data-word', word);
+        ele.setAttribute('data-wrong-word', word);
 
         ele.classList.remove('wrong-word');
         window.requestAnimationFrame(() => {
@@ -102,13 +106,43 @@ export class DisplayComponent {
     //设置某页可见
     _setPageActive(page: number) {
         if(page === this._showenPage || page < 0 || page > this._pagesElements.length - 1) return;
-        this._pagesElements.forEach((pageElement) => {
-            pageElement.classList.remove('active');
-        });
-        this._pagesElements[page] && this._pagesElements[page].classList.add('active');
+
+        let oldIterator: AnimationIterator;
+        let newIterator: AnimationIterator;
+
+        if(this._showenPage >= 0 && this._showenPage < this._pagesElements.length) {
+            const pageElementOld = this._pagesElements[this._showenPage];
+
+            pageElementOld.classList.remove('active', 'show');
+            pageElementOld.classList.add('complete', 'hide');
+
+            oldIterator = new AnimationIterator(pageElementOld.querySelectorAll('.word'), this._effectDuration);
+        }
+
+        const pageElementNew = this._pagesElements[page];
+        pageElementNew.classList.add('active', 'show');
+        pageElementNew.classList.remove('complete', 'hide');
+
+        newIterator = new AnimationIterator(pageElementNew.querySelectorAll('.word'), this._effectDuration);
+        
+        if(oldIterator) {
+            oldIterator.run((ele, idx) => {
+                ele.classList.remove('active', 'show');
+                ele.classList.add('hide');
+            }).then(() => {
+                newIterator.run((ele, idx) => {
+                    ele.classList.add('show');
+                });
+            });
+        } else {
+            newIterator.run((ele, idx) => {
+                ele.classList.add('show');
+            });
+        }
+
         this._showenPage = page;
     }
-
+ 
     //获取某个offset对应的页码
     _getPageNumberByOffset(offset: number): number {
         let page = 0;
