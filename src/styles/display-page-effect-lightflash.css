@@ -1,0 +1,62 @@
+.display-panel.effect-lightflash-in .page.show .word {
+    opacity: 0;
+    animation-name: effect-lightflash-in, effect-lightflash-outline;
+    animation-duration: 1s, 3s;
+    animation-play-state: running, running;
+    animation-fill-mode: forwards, none;
+    animation-iteration-count: 1, infinite;
+    animation-timing-function: steps(10, start), linear;
+}
+
+.display-panel.effect-lightflash-out .page.hide .word {
+    opacity: 1;
+    animation-name: effect-lightflash-in;
+    animation-duration: 1s;
+    animation-play-state: running;
+    animation-fill-mode: forwards;
+    animation-iteration-count: 1;
+    animation-timing-function: steps(10, start);
+    animation-direction: reverse;
+    
+}
+
+@keyframes effect-lightflash-in {
+    0% {
+        opacity: 0;
+    }
+    10% {
+        opacity: .2;
+    }
+    20% {
+        opacity: 0;
+    }
+    30% {
+        opacity: 0;
+    }
+    40% {
+        opacity: .5;
+    }
+    50% {
+        opacity: 0;
+    }
+    60% {
+        opacity: 0;
+    }
+    70% {
+        opacity: .8;
+    }
+    80% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes effect-lightflash-outline {
+    50% {
+        color: rgba(6, 8, 34, 1);
+        text-shadow: 0em 0em 0em rgba(143, 164, 250, .4);
+        -webkit-text-stroke-color: rgba(143, 164, 250, .4);
+    }
+}

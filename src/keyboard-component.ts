@@ -191,7 +191,11 @@ export class KeyboardComponent {
     _lastShiftLocation: number = 0;
     constructor() {
         this.element = document.createElement('div');
-        this.element.classList.add('keyboard');
+        this.element.classList.add('keyboard-container');
+        const box = document.createElement('div');
+        box.classList.add('keyboard');
+        this.element.appendChild(box);
+
         KEYBOARD_CONFIG.forEach((row) => {
             const rowElement = document.createElement('div');
             rowElement.classList.add('row');
@@ -208,7 +212,7 @@ export class KeyboardComponent {
                     this.keysList.get(keyConfig.key.toLocaleLowerCase()).push(key);
                 }
             });
-            this.element.appendChild(rowElement);
+            box.appendChild(rowElement);
         });
 
         this._actionComponent = new KeyboardActionComponent();
