@@ -17,7 +17,7 @@ function main() {
                 ],
             },
             {
-                size: 40,
+                size: 30,
                 pages: [
                     `From fairest creatures we desire increase,\n`,
                     `That thereby beauty's rose might never die,\n`,
