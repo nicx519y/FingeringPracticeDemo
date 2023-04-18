@@ -5,7 +5,10 @@ import { FingeringPracticedComponent, FingeringPracticedEvent, StyleModes } from
 import { DisplayConfigInterface } from './display-config';
 
 function main() {
-    const app = new FingeringPracticedComponent();
+
+    const styleMode = getQueryString('style') || 'TERMINAL';
+    console.log(styleMode)
+    const app = new FingeringPracticedComponent(styleMode);
     document.body.appendChild(app.element);
 
     const configs: DisplayConfigInterface[] = [
@@ -40,8 +43,9 @@ function main() {
 
     let num: number = 0;
 
+   
+
     app.addEventListener(FingeringPracticedEvent.Complete, (event: CustomEvent) => {
-        console.log('complete', event.detail.timeElapsed, event.detail.rightRate);
         const result: boolean = window.confirm(`
             恭喜完成测试
             耗时：${Math.round(event.detail.timeElapsed / 1000)} 秒，正确率：${Math.round(event.detail.rightRate * 100)}%
@@ -64,12 +68,28 @@ function main() {
         option.value = key;
         option.innerText = key;
         styleSelect.appendChild(option);
+        console.log(key, styleMode)
+        if(key.toLowerCase() === styleMode.toLowerCase()) {
+            option.selected = true;
+        }
     });
 
     styleSelect.addEventListener('change', (event: Event) => 
         app.changeStyleMode((event.target as HTMLSelectElement).value));
 
 };
+
+
+function getQueryString(name: string, search: string = null): string | null {
+    try {
+        search = search ||  window.location.search.substr(1) || window.location.hash.split("?")[1];
+        let reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+        let r = search.match(reg);
+        if (r != null) return  unescape(r[2]); return null;
+    } catch (e) {
+        return null;
+    }
+  }
 
 window.onload = () => main();
 

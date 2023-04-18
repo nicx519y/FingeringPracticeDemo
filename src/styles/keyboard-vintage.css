@@ -1,3 +1,9 @@
+@font-face {
+    font-family: 'Verdana';
+    src: url('../fonts/Verdana-Regular.ttf');
+    font-weight: normal;
+    font-style: normal;
+}
 
 .vintage-style {
     font-family: 'Verdana', sans-serif;

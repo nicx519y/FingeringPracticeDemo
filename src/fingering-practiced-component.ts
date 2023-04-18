@@ -74,7 +74,7 @@ export class FingeringPracticedComponent extends DelegatedEventTarget {
 
   _currStyleMode: string = 'CYBERPUNK';
 
-  constructor() {
+  constructor(styleMode: string = 'CYBERPUNK') {
     super();
     this.element = document.createElement('div');
     this.element.classList.add('fingering-practiced');
@@ -88,7 +88,8 @@ export class FingeringPracticedComponent extends DelegatedEventTarget {
     this.element.appendChild(this.keyboard.element);
     this.element.appendChild(this.display.element);
 
-    this.changeStyleMode(this._currStyleMode);
+    this.changeStyleMode(styleMode ? styleMode.toUpperCase() : 'CYBERPUNK');
+
   }
 
   changeKeyboardStyleMode(mode: KeyboardStyleMode) {
@@ -116,7 +117,14 @@ export class FingeringPracticedComponent extends DelegatedEventTarget {
   }
 
   changeStyleMode(mode: string) {
-    const m = StyleModes.get(mode);
+    let m = StyleModes.get(mode);
+    
+    if (m === undefined) {
+      m = StyleModes.get(this._currStyleMode);
+    } else {
+      this._currStyleMode = mode;
+    }
+    
     this.changeKeyboardStyleMode(m.keyboard);
     this.changeDisplayStyleMode(m.display);
     this.changePageInEffectMode(m.effectIn);
