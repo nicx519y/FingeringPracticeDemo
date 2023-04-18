@@ -41,6 +41,7 @@
     height: inherit;
     justify-content: center;
     align-items: center;
+    
 }
 
 .terminal-style .display-panel .word.complete::before {
