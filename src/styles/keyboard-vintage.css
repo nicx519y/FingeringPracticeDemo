@@ -13,6 +13,7 @@
     border: solid 1px black;
     border-radius: .2em;
     margin: 0 auto;
+    height: 500px;
 }
 
 .vintage-style .row {

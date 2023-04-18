@@ -11,11 +11,13 @@ import { MyAudio } from './my-audio';
 export enum KeyboardStyleMode {
   VINTAGE = 'vintage-style',
   MAC = 'mac-style',
+  CYBERPUNK = 'cyberpunk-style',
 }
 
 export enum DisplayStyleMode {
   TERMINAL = 'terminal-style',
   PAPER = 'paper-style',
+  CYBERPUNK = 'cyberpunk-display-style',
 }
 
 export enum DisplayPageInEffect {
@@ -23,6 +25,7 @@ export enum DisplayPageInEffect {
   FADE = 'fade',
   FLY = 'fly',
   FLOAT = 'float',
+  LIGHTFLASH = 'lightflash',
 }
 
 export enum DisplayPageOutEffect {
@@ -30,6 +33,7 @@ export enum DisplayPageOutEffect {
   FADE = 'fade',
   FLY = 'fly',
   FLOAT = 'float',
+  LIGHTFLASH = 'lightflash',
 }
 
 interface StyleMode {
@@ -40,6 +44,7 @@ interface StyleMode {
 }
 
 export const StyleModes: Map<string, StyleMode> = new Map([
+  ['CYBERPUNK', { keyboard: KeyboardStyleMode.CYBERPUNK, display: DisplayStyleMode.CYBERPUNK, effectIn: DisplayPageInEffect.LIGHTFLASH, effectOut: DisplayPageOutEffect.LIGHTFLASH }],
   ['TERMINAL', { keyboard: KeyboardStyleMode.VINTAGE, display: DisplayStyleMode.TERMINAL, effectIn: DisplayPageInEffect.FLOAT, effectOut: DisplayPageOutEffect.FLOAT }],
   ['VINTAGE', { keyboard: KeyboardStyleMode.MAC, display: DisplayStyleMode.PAPER, effectIn: DisplayPageInEffect.FLY, effectOut: DisplayPageOutEffect.FLY }],
 ]);
@@ -67,7 +72,7 @@ export class FingeringPracticedComponent extends DelegatedEventTarget {
   _currPageInEffectMode: DisplayPageInEffect = DisplayPageInEffect.FLOAT;
   _currPageOutEffectMode: DisplayPageOutEffect = DisplayPageOutEffect.FLOAT;
 
-  _currStyleMode: string = 'TERMINAL';
+  _currStyleMode: string = 'CYBERPUNK';
 
   constructor() {
     super();

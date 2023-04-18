@@ -11,12 +11,15 @@ html, body {
 @import './display-page-effect-fade.css';
 @import './display-page-effect-fly-1by1.css';
 @import './display-page-effect-float-1by1.css';
+@import './display-page-effect-lightflash.css';
 
 @import './keyboard-mac.css';
 @import './keyboard-vintage.css';
+@import './keyboard-cyberpunk.css';
 
 @import './display-paper.css';
 @import './display-terminal.css';
+@import './display-cyberpunk.css';
 
 
 .tools-bar {
@@ -72,4 +75,18 @@ html, body {
 .fingering-practiced .display-panel .page.active, 
 .fingering-practiced .display-panel .page.complete {
     display: flex;
+}
+
+.keyboard-container {
+   display: block;
+   flex: 0;
+   margin-bottom: 1em;
+
+}
+
+.keyboard {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }

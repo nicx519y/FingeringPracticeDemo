@@ -1,0 +1,174 @@
+
+@font-face {
+    font-family: 'Gasping';
+    src: url('../fonts/Gasping.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.cyberpunk-style {
+    font-family: 'Gasping', sans-serif;
+    font-weight: bold;
+    padding: .2em;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(6, 8, 34, 0);
+    width: 50em;
+    border-radius: .2em;
+    margin: 0 auto;
+}
+
+.cyberpunk-style .row {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.cyberpunk-style .key {
+    display: flex;
+    flex-direction: column;
+    width: 3em;
+    height: 3em;
+    border: solid 1px rgba(5, 39, 175, 1);
+    justify-content: center;
+    align-items: center;
+    margin: .2em;
+    Border-radius: .1em;
+    background-color: rgba(8, 11, 48, 1);
+    color: rgba(202, 205, 251, 1);
+    box-shadow: .1em .1em .2em rgba(0, 0, 0, 0.7);
+    
+}
+
+.cyberpunk-style .key .key-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+.cyberpunk-style .key.highlight {
+    background-color: rgba(5, 39, 175, 1);
+    border-color: rgba(143, 164, 250, 1);
+    box-shadow: 0em 0em .4em .2em rgba(143, 164, 250, 1);
+    color: white;
+}
+
+.cyberpunk-style .key.highlight::after {
+    content: '';
+    position: absolute;
+    width: inherit;
+    height: inherit;
+    border-radius: .2em;
+    box-shadow: 0em 0em 0em 0em rgba(0, 0, 255, 0);
+
+    animation-name: cyberpunk-keyHighlight1;
+    animation-duration: 4s;
+    animation-delay: 0s;
+    animation-fill-mode: none;
+    animation-iteration-count: infinite;
+    animation-play-state: running;
+}
+
+.cyberpunk-style .key.highlight::before {
+    content: '';
+    position: absolute;
+    width: inherit;
+    height: inherit;
+    border-radius: .2em;
+    box-shadow: 0em 0em 0em 0em rgba(0, 0, 255, 0);
+
+    animation-name: cyberpunk-keyHighlight2;
+    animation-duration: 4s;
+    animation-delay: .8s;
+    animation-fill-mode: none;
+    animation-iteration-count: infinite;
+    animation-play-state: running;
+    animation-timing-function: ease-out;
+}
+
+@keyframes cyberpunk-keyHighlight1 {
+    65% {
+        box-shadow: 0em 0em 0em 2em rgba(0, 0, 255, .3);
+    }
+    100% {
+        box-shadow: 0em 0em 0em 3em rgba(0, 0, 255, 0);
+    }
+}
+
+@keyframes cyberpunk-keyHighlight2 {
+    65% {
+        box-shadow: 0em 0em 0em 1.8em rgba(0, 0, 255, .3);
+    }
+    100% {
+        box-shadow: 0em 0em 0em 2.5em rgba(0, 0, 255, 0);
+    }
+}
+
+.cyberpunk-style .key .key-label {
+    display: flex;
+    font-size: 1em;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    flex-direction: column;
+}
+
+.cyberpunk-style .key-label::after {
+    content: attr(data-key);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-transform: uppercase;
+    transform: scale(.9);
+}
+
+.cyberpunk-style .key-label::before {
+    content: attr(data-subkey);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: scale(.6);
+}
+
+.cyberpunk-style .key-special .key-label {
+    height: auto;
+}
+
+.cyberpunk-style .key-special .key-label::after {
+    transform: scale(.5);
+}
+
+.cyberpunk-style .key-shift {
+    width: 7.3em;
+}
+
+.cyberpunk-style .key-backspace {
+    width: 4.5em;
+}
+
+.cyberpunk-style .key-space {
+    width: 32.3em;
+}
+
+.cyberpunk-style .key-enter {
+    width: 6em;
+}
+
+.cyberpunk-style .key-tab {
+    width: 4.5em;
+}
+
+.cyberpunk-style .key-capslock {
+    width: 5em;
+}
+
+.cyberpunk-style .key-alt {
+    width: 5em;
+}
