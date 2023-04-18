@@ -1,9 +1,10 @@
-html, body {
+html,
+body {
     padding: 0;
     margin: 0;
-    font-size: 16px;
+    font-size: 10px;
     overflow: hidden;
-    font-family: 'Consolas', sans-serif;
+    font-family: 'Arial', sans-serif;
     user-select: none;
 }
 
@@ -50,13 +51,17 @@ html, body {
     flex-direction: column-reverse;
     width: 100vw;
     height: 100vh;
+    align-items: center;
+    
 }
 
 .fingering-practiced .display-panel {
     display: flex;
+    width: 100%;
     flex: 1;
     flex-direction: column;
     position: relative;
+
 }
 
 .fingering-practiced .display-panel .page {
@@ -72,17 +77,18 @@ html, body {
 }
 
 
-.fingering-practiced .display-panel .page.active, 
+.fingering-practiced .display-panel .page.active,
 .fingering-practiced .display-panel .page.complete {
     display: flex;
 }
 
 .keyboard-container {
-   display: block;
-   flex: 0;
-   margin-bottom: 1em;
-
-}
+    display: flex;
+    flex: 0;
+    margin-bottom: 1em;
+    max-width: max-content;
+    /* transform: scale(.5); */
+}  
 
 .keyboard {
     display: flex;

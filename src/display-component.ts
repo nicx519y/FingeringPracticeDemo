@@ -45,7 +45,7 @@ export class DisplayComponent {
         });
 
         //设置字体大小
-        this.element.style.fontSize = `${model.size}px`;
+        this.element.style.fontSize = `${model.size}em`;
 
         //初始化变量
         this._pagesElements = Array.from(this.element.querySelectorAll('.page'));

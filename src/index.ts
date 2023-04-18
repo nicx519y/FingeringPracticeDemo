@@ -13,14 +13,14 @@ function main() {
 
     const configs: DisplayConfigInterface[] = [
             {
-                size: 50,
+                size: 4,
                 pages: [
                     `Hello World!\n`,
                     `Getting Start!\n`,
                 ],
             },
             {
-                size: 30,
+                size: 1,
                 pages: [
                     `From fairest creatures we desire increase,\n`,
                     `That thereby beauty's rose might never die,\n`,

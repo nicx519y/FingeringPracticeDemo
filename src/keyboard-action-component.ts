@@ -35,50 +35,44 @@ export class KeyboardActionComponent extends DelegatedEventTarget {
     constructor() {
         super();
         this._ele = document.body;
-    }
-
-    start() {
         this._ele.addEventListener('keydown', this._keydownHandler);
         this._ele.addEventListener('keyup', this._keyupHandler);
-    }
-
-    end() {
-        this._ele.removeEventListener('keydown', this._keydownHandler);
-        this._ele.removeEventListener('keyup', this._keyupHandler);
     }
 
     set currAction(action: KeyboardAction) {
         this._currAction = action;
     }
 
+    setKeyEvent(type: string, key: string, location: number) {
+        if(type === 'fire') {
+            this._fireKey(key, location);
+        } else if(type === 'cancel') {
+            this._cancelKey(key, location);
+        }
+    }
+        
     _keyupHandler = (event: KeyboardEvent) => {
         event.preventDefault();
-
-        const key: String = event.key === 'Meta' ? 'Control' : event.key;
-
-        if([KeyboardControlKey.CTRL, KeyboardControlKey.SHIFT, KeyboardControlKey.ALT].indexOf(key as KeyboardControlKey) !== -1) {
-            this._currControlKey = KeyboardControlKey.NONE;
-            this._currControlLocation = KeyboardControlLocation.NONE;
-        }
+        this._cancelKey(event.key === 'Meta' ? 'Control' : event.key, event.location);
     }
 
     _keydownHandler = (event: KeyboardEvent) => {
         event.preventDefault();
+        this._fireKey(event.key === 'Meta' ? 'Control' : event.key, event.location);
+    }
 
-        const key: String = event.key === 'Meta' ? 'Control' : event.key;
-        
-        // console.log(`keydown: currAction`, this._currAction, `key - ${key}`);
+    _fireKey(key: string, location: KeyboardControlLocation = KeyboardControlLocation.NONE) {
 
         if([KeyboardControlKey.CTRL, KeyboardControlKey.SHIFT, KeyboardControlKey.ALT].indexOf(key as KeyboardControlKey) !== -1) {
             this._currControlKey = key as KeyboardControlKey;
-            this._currControlLocation = event.location as KeyboardControlLocation;
+            this._currControlLocation = location;
         }
 
         if(!this._currAction) return;
 
         if([KeyboardControlKey.CTRL, KeyboardControlKey.SHIFT, KeyboardControlKey.ALT].indexOf(key as KeyboardControlKey) !== -1) {
             if(this._currAction.control !== KeyboardControlKey.NONE) {
-                if(this._currAction.control !== key || this._currAction.location !== event.location) {
+                if(this._currAction.control !== key || this._currAction.location !== location) {
                     this.dispatchEvent(new CustomEvent(KeyboardActionEvent.WRONG, {
                         detail: { key: key }
                     }));
@@ -118,4 +112,12 @@ export class KeyboardActionComponent extends DelegatedEventTarget {
             }
         }
     }
+
+    _cancelKey(key: string, location: KeyboardControlLocation = KeyboardControlLocation.NONE) {
+        if([KeyboardControlKey.CTRL, KeyboardControlKey.SHIFT, KeyboardControlKey.ALT].indexOf(key as KeyboardControlKey) !== -1) {
+            this._currControlKey = KeyboardControlKey.NONE;
+            this._currControlLocation = KeyboardControlLocation.NONE;
+        }
+    }
+
 }

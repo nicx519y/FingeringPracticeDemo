@@ -3,72 +3,72 @@ import { KeyboardAction, KeyboardActionComponent, KeyboardControlKey, KeyboardCo
 
 const KEYBOARD_CONFIG: KeyConfigInterface[][] = [
     [
-        { key: '`', keyLabel: '`', subKey: '~', subKeyLabel: '~', hasSubKey: true },
-        { key: '1', keyLabel: '1', subKey: '!', subKeyLabel: '!', hasSubKey: true },
-        { key: '2', keyLabel: '2', subKey: '@', subKeyLabel: '@', hasSubKey: true },
-        { key: '3', keyLabel: '3', subKey: '#', subKeyLabel: '#', hasSubKey: true },
-        { key: '4', keyLabel: '4', subKey: '$', subKeyLabel: '$', hasSubKey: true },
-        { key: '5', keyLabel: '5', subKey: '%', subKeyLabel: '%', hasSubKey: true },
-        { key: '6', keyLabel: '6', subKey: '^', subKeyLabel: '^', hasSubKey: true },
-        { key: '7', keyLabel: '7', subKey: '&', subKeyLabel: '&', hasSubKey: true },
-        { key: '8', keyLabel: '8', subKey: '*', subKeyLabel: '*', hasSubKey: true },
-        { key: '9', keyLabel: '9', subKey: '(', subKeyLabel: '(', hasSubKey: true },
-        { key: '0', keyLabel: '0', subKey: ')', subKeyLabel: ')', hasSubKey: true },
-        { key: '-', keyLabel: '-', subKey: '_', subKeyLabel: '_', hasSubKey: true },
-        { key: '=', keyLabel: '=', subKey: '+', subKeyLabel: '+', hasSubKey: true },
-        { key: 'Backspace', keyLabel: '←', subKey: '', subKeyLabel: '', hasSubKey: false },
+        { key: '`', keyLabel: '`', subKey: '~', subKeyLabel: '~', hasSubKey: true, location: KeyboardControlLocation.NONE },
+        { key: '1', keyLabel: '1', subKey: '!', subKeyLabel: '!', hasSubKey: true, location: KeyboardControlLocation.NONE },
+        { key: '2', keyLabel: '2', subKey: '@', subKeyLabel: '@', hasSubKey: true, location: KeyboardControlLocation.NONE },
+        { key: '3', keyLabel: '3', subKey: '#', subKeyLabel: '#', hasSubKey: true, location: KeyboardControlLocation.NONE },
+        { key: '4', keyLabel: '4', subKey: '$', subKeyLabel: '$', hasSubKey: true, location: KeyboardControlLocation.NONE },
+        { key: '5', keyLabel: '5', subKey: '%', subKeyLabel: '%', hasSubKey: true, location: KeyboardControlLocation.NONE },
+        { key: '6', keyLabel: '6', subKey: '^', subKeyLabel: '^', hasSubKey: true, location: KeyboardControlLocation.NONE },
+        { key: '7', keyLabel: '7', subKey: '&', subKeyLabel: '&', hasSubKey: true, location: KeyboardControlLocation.NONE },
+        { key: '8', keyLabel: '8', subKey: '*', subKeyLabel: '*', hasSubKey: true, location: KeyboardControlLocation.NONE },
+        { key: '9', keyLabel: '9', subKey: '(', subKeyLabel: '(', hasSubKey: true, location: KeyboardControlLocation.NONE },
+        { key: '0', keyLabel: '0', subKey: ')', subKeyLabel: ')', hasSubKey: true, location: KeyboardControlLocation.NONE },
+        { key: '-', keyLabel: '-', subKey: '_', subKeyLabel: '_', hasSubKey: true, location: KeyboardControlLocation.NONE },
+        { key: '=', keyLabel: '=', subKey: '+', subKeyLabel: '+', hasSubKey: true, location: KeyboardControlLocation.NONE },
+        { key: 'Backspace', keyLabel: '←', subKey: '', subKeyLabel: '', hasSubKey: false, location: KeyboardControlLocation.NONE },
     ],
     [
-        { key: 'Tab', keyLabel: 'TAB', subKey: '', subKeyLabel: '', hasSubKey: false },
-        { key: 'q', keyLabel: 'Q', subKey: '', subKeyLabel: '', hasSubKey: false },
-        { key: 'w', keyLabel: 'W', subKey: '', subKeyLabel: '', hasSubKey: false },
-        { key: 'e', keyLabel: 'E', subKey: '', subKeyLabel: '', hasSubKey: false },
-        { key: 'r', keyLabel: 'R', subKey: '', subKeyLabel: '', hasSubKey: false },
-        { key: 't', keyLabel: 'T', subKey: '', subKeyLabel: '', hasSubKey: false },
-        { key: 'y', keyLabel: 'Y', subKey: '', subKeyLabel: '', hasSubKey: false },
-        { key: 'u', keyLabel: 'U', subKey: '', subKeyLabel: '', hasSubKey: false },
-        { key: 'i', keyLabel: 'I', subKey: '', subKeyLabel: '', hasSubKey: false },
-        { key: 'o', keyLabel: 'O', subKey: '', subKeyLabel: '', hasSubKey: false },
-        { key: 'p', keyLabel: 'P', subKey: '', subKeyLabel: '', hasSubKey: false },
-        { key: '[', keyLabel: '[', subKey: '{', subKeyLabel: '{', hasSubKey: true },
-        { key: ']', keyLabel: ']', subKey: '}', subKeyLabel: '}', hasSubKey: true },
-        { key: '\\', keyLabel: '\\', subKey: '|', subKeyLabel: '|', hasSubKey: true }
+        { key: 'Tab', keyLabel: 'TAB', subKey: '', subKeyLabel: '', hasSubKey: false, location: KeyboardControlLocation.NONE },
+        { key: 'q', keyLabel: 'Q', subKey: '', subKeyLabel: '', hasSubKey: false, location: KeyboardControlLocation.NONE },
+        { key: 'w', keyLabel: 'W', subKey: '', subKeyLabel: '', hasSubKey: false, location: KeyboardControlLocation.NONE },
+        { key: 'e', keyLabel: 'E', subKey: '', subKeyLabel: '', hasSubKey: false, location: KeyboardControlLocation.NONE },
+        { key: 'r', keyLabel: 'R', subKey: '', subKeyLabel: '', hasSubKey: false, location: KeyboardControlLocation.NONE },
+        { key: 't', keyLabel: 'T', subKey: '', subKeyLabel: '', hasSubKey: false, location: KeyboardControlLocation.NONE },
+        { key: 'y', keyLabel: 'Y', subKey: '', subKeyLabel: '', hasSubKey: false, location: KeyboardControlLocation.NONE },
+        { key: 'u', keyLabel: 'U', subKey: '', subKeyLabel: '', hasSubKey: false, location: KeyboardControlLocation.NONE },
+        { key: 'i', keyLabel: 'I', subKey: '', subKeyLabel: '', hasSubKey: false, location: KeyboardControlLocation.NONE },
+        { key: 'o', keyLabel: 'O', subKey: '', subKeyLabel: '', hasSubKey: false, location: KeyboardControlLocation.NONE },
+        { key: 'p', keyLabel: 'P', subKey: '', subKeyLabel: '', hasSubKey: false, location: KeyboardControlLocation.NONE },
+        { key: '[', keyLabel: '[', subKey: '{', subKeyLabel: '{', hasSubKey: true, location: KeyboardControlLocation.NONE },
+        { key: ']', keyLabel: ']', subKey: '}', subKeyLabel: '}', hasSubKey: true, location: KeyboardControlLocation.NONE },
+        { key: '\\', keyLabel: '\\', subKey: '|', subKeyLabel: '|', hasSubKey: true, location: KeyboardControlLocation.NONE },
     ],
     [
-        { key: 'CapsLock', keyLabel: 'CAPSLOCK', subKey: '', subKeyLabel: '', hasSubKey: false },
-        { key: 'a', keyLabel: 'A', subKey: '', subKeyLabel: '', hasSubKey: false },
-        { key: 's', keyLabel: 'S', subKey: '', subKeyLabel: '', hasSubKey: false },
-        { key: 'd', keyLabel: 'D', subKey: '', subKeyLabel: '', hasSubKey: false },
-        { key: 'f', keyLabel: 'F', subKey: '', subKeyLabel: '', hasSubKey: false },
-        { key: 'g', keyLabel: 'G', subKey: '', subKeyLabel: '', hasSubKey: false },
-        { key: 'h', keyLabel: 'H', subKey: '', subKeyLabel: '', hasSubKey: false },
-        { key: 'j', keyLabel: 'J', subKey: '', subKeyLabel: '', hasSubKey: false },
-        { key: 'k', keyLabel: 'K', subKey: '', subKeyLabel: '', hasSubKey: false },
-        { key: 'l', keyLabel: 'L', subKey: '', subKeyLabel: '', hasSubKey: false },
-        { key: ';', keyLabel: ';', subKey: ':', subKeyLabel: ':', hasSubKey: true },
-        { key: '\'', keyLabel: '\'', subKey: '&quot;', subKeyLabel: '&quot;', hasSubKey: true },
-        { key: 'Enter', keyLabel: '↵', subKey: '', subKeyLabel: '', hasSubKey: false },
+        { key: 'CapsLock', keyLabel: 'CAPSLOCK', subKey: '', subKeyLabel: '', hasSubKey: false, location: KeyboardControlLocation.NONE },
+        { key: 'a', keyLabel: 'A', subKey: '', subKeyLabel: '', hasSubKey: false, location: KeyboardControlLocation.NONE },
+        { key: 's', keyLabel: 'S', subKey: '', subKeyLabel: '', hasSubKey: false, location: KeyboardControlLocation.NONE },
+        { key: 'd', keyLabel: 'D', subKey: '', subKeyLabel: '', hasSubKey: false, location: KeyboardControlLocation.NONE },
+        { key: 'f', keyLabel: 'F', subKey: '', subKeyLabel: '', hasSubKey: false, location: KeyboardControlLocation.NONE },
+        { key: 'g', keyLabel: 'G', subKey: '', subKeyLabel: '', hasSubKey: false, location: KeyboardControlLocation.NONE },
+        { key: 'h', keyLabel: 'H', subKey: '', subKeyLabel: '', hasSubKey: false, location: KeyboardControlLocation.NONE },
+        { key: 'j', keyLabel: 'J', subKey: '', subKeyLabel: '', hasSubKey: false, location: KeyboardControlLocation.NONE },
+        { key: 'k', keyLabel: 'K', subKey: '', subKeyLabel: '', hasSubKey: false, location: KeyboardControlLocation.NONE },
+        { key: 'l', keyLabel: 'L', subKey: '', subKeyLabel: '', hasSubKey: false, location: KeyboardControlLocation.NONE },
+        { key: ';', keyLabel: ';', subKey: ':', subKeyLabel: ':', hasSubKey: true, location: KeyboardControlLocation.NONE },
+        { key: '\'', keyLabel: '\'', subKey: '&quot;', subKeyLabel: '&quot;', hasSubKey: true, location: KeyboardControlLocation.NONE },
+        { key: 'Enter', keyLabel: '↵', subKey: '', subKeyLabel: '', hasSubKey: false, location: KeyboardControlLocation.NONE },
     ],
     [
-        { key: 'Shift', keyLabel: 'SHIFT', subKey: '', subKeyLabel: '', hasSubKey: false },
-        { key: 'z', keyLabel: 'Z', subKey: '', subKeyLabel: '', hasSubKey: false },
-        { key: 'x', keyLabel: 'X', subKey: '', subKeyLabel: '', hasSubKey: false },
-        { key: 'c', keyLabel: 'C', subKey: '', subKeyLabel: '', hasSubKey: false },
-        { key: 'v', keyLabel: 'V', subKey: '', subKeyLabel: '', hasSubKey: false },
-        { key: 'b', keyLabel: 'B', subKey: '', subKeyLabel: '', hasSubKey: false },
-        { key: 'n', keyLabel: 'N', subKey: '', subKeyLabel: '', hasSubKey: false },
-        { key: 'm', keyLabel: 'M', subKey: '', subKeyLabel: '', hasSubKey: false },
-        { key: ',', keyLabel: ',', subKey: '<', subKeyLabel: '<', hasSubKey: true },
-        { key: '.', keyLabel: '.', subKey: '>', subKeyLabel: '>', hasSubKey: true },
-        { key: '/', keyLabel: '/', subKey: '?', subKeyLabel: '?', hasSubKey: true }, 
-        { key: 'Shift', keyLabel: 'SHIFT', subKey: '', subKeyLabel: '', hasSubKey: false },
+        { key: 'Shift', keyLabel: 'SHIFT', subKey: '', subKeyLabel: '', hasSubKey: false, location: KeyboardControlLocation.LEFT },
+        { key: 'z', keyLabel: 'Z', subKey: '', subKeyLabel: '', hasSubKey: false, location: KeyboardControlLocation.NONE },
+        { key: 'x', keyLabel: 'X', subKey: '', subKeyLabel: '', hasSubKey: false, location: KeyboardControlLocation.NONE },
+        { key: 'c', keyLabel: 'C', subKey: '', subKeyLabel: '', hasSubKey: false, location: KeyboardControlLocation.NONE },
+        { key: 'v', keyLabel: 'V', subKey: '', subKeyLabel: '', hasSubKey: false, location: KeyboardControlLocation.NONE },
+        { key: 'b', keyLabel: 'B', subKey: '', subKeyLabel: '', hasSubKey: false, location: KeyboardControlLocation.NONE },
+        { key: 'n', keyLabel: 'N', subKey: '', subKeyLabel: '', hasSubKey: false, location: KeyboardControlLocation.NONE },
+        { key: 'm', keyLabel: 'M', subKey: '', subKeyLabel: '', hasSubKey: false, location: KeyboardControlLocation.NONE },
+        { key: ',', keyLabel: ',', subKey: '<', subKeyLabel: '<', hasSubKey: true, location: KeyboardControlLocation.NONE },
+        { key: '.', keyLabel: '.', subKey: '>', subKeyLabel: '>', hasSubKey: true, location: KeyboardControlLocation.NONE },
+        { key: '/', keyLabel: '/', subKey: '?', subKeyLabel: '?', hasSubKey: true, location: KeyboardControlLocation.NONE },
+        { key: 'Shift', keyLabel: 'SHIFT', subKey: '', subKeyLabel: '', hasSubKey: false, location: KeyboardControlLocation.RIGHT },
     ],
     [
-        { key: 'Ctrl', keyLabel: 'CTRL', subKey: '', subKeyLabel: '', hasSubKey: false },
-        { key: 'Alt', keyLabel: 'ALT', subKey: '', subKeyLabel: '', hasSubKey: false },
-        { key: ' ', keyLabel: ' ', subKey: '', subKeyLabel: '', hasSubKey: false },
-        { key: 'Alt', keyLabel: 'ALT', subKey: '', subKeyLabel: '', hasSubKey: false },
-        { key: 'Ctrl', keyLabel: 'CTRL', subKey: '', subKeyLabel: '', hasSubKey: false },
+        { key: 'Ctrl', keyLabel: 'CTRL', subKey: '', subKeyLabel: '', hasSubKey: false, location: KeyboardControlLocation.LEFT },
+        { key: 'Alt', keyLabel: 'ALT', subKey: '', subKeyLabel: '', hasSubKey: false, location: KeyboardControlLocation.LEFT },
+        { key: ' ', keyLabel: ' ', subKey: '', subKeyLabel: '', hasSubKey: false, location: KeyboardControlLocation.NONE },
+        { key: 'Alt', keyLabel: 'ALT', subKey: '', subKeyLabel: '', hasSubKey: false, location: KeyboardControlLocation.RIGHT },
+        { key: 'Ctrl', keyLabel: 'CTRL', subKey: '', subKeyLabel: '', hasSubKey: false, location: KeyboardControlLocation.RIGHT },
     ]
 ];
 
@@ -211,12 +211,14 @@ export class KeyboardComponent {
                 } else {
                     this.keysList.get(keyConfig.key.toLocaleLowerCase()).push(key);
                 }
+
+                key.addEventListener(KeyComponent.TOUCH_START_EVENT, this._keyTouchHandler);
+                key.addEventListener(KeyComponent.TOUCH_END_EVENT, this._keyTouchHandler);
             });
             box.appendChild(rowElement);
         });
 
         this._actionComponent = new KeyboardActionComponent();
-        this._actionComponent.start();
     }
 
     get action(): KeyboardActionComponent {
@@ -269,5 +271,13 @@ export class KeyboardComponent {
         if(actionConfig.key) {
             this.highlightKey(actionConfig.key, 0, true);
         }
+    }
+
+    _keyTouchHandler = (e: CustomEvent) => {
+        const type: string = e.type === KeyComponent.TOUCH_START_EVENT ? 'fire' : 'cancel';
+        const key: string = e.detail.key;
+        const location: KeyboardControlLocation = e.detail.location;
+
+        this._actionComponent.setKeyEvent(type, key, location);
     }
 }

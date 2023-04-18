@@ -15,11 +15,8 @@
     align-items: center;
     box-shadow: .1em .1em .5em rgba(0, 0, 0, 0.3);
     background-color: #333;
-    width: 50em;
     border: solid 1px black;
     border-radius: .2em;
-    margin: 0 auto;
-    height: 500px;
 }
 
 .vintage-style .row {
@@ -151,7 +148,7 @@
 }
 
 .vintage-style .key-shift {
-    width: 7em;
+    flex: 1;
 }
 
 .vintage-style .key-shift .key-label::after {
@@ -159,15 +156,15 @@
 }
 
 .vintage-style .key-backspace {
-    width: 4.4em;
+    width: 4em;
 }
 
 .vintage-style .key-space {
-    width: 30.5em;
+    flex: 1;
 }
 
 .vintage-style .key-enter {
-    width: 5em;
+    flex: 1;
 }
 
 .vintage-style .key-enter .key-label::after {
@@ -175,7 +172,7 @@
 }
 
 .vintage-style .key-tab {
-    width: 4.5em;
+    width: 4em;
 }
 
 .vintage-style .key-tab .key-label::after {
@@ -184,7 +181,7 @@
 
 
 .vintage-style .key-capslock {
-    width: 5.6em;
+    flex: 1;
 }
 
 .vintage-style .key-capslock .key-label::after {
