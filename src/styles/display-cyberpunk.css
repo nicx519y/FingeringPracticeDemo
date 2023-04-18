@@ -1,4 +1,11 @@
 
+@font-face {
+    font-family: 'Cyberion';
+    src: url('../fonts/Cyberion-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
 .cyberpunk-display-style.fingering-practiced {
     background-color: rgba(6, 8, 34, 1);
 }

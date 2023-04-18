@@ -23,6 +23,13 @@ module.exports = {
                     filename: 'audios/[hash][ext]',
                 }
             },
+            {
+                test: /\.(ttf|eot|woff2?)$/i,
+                type: 'asset/resource',
+                generator: {
+                    filename: 'fonts/[hash][ext]',
+                }
+            },
         ],
     },
 
