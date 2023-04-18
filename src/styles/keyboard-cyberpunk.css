@@ -29,12 +29,12 @@
 .cyberpunk-style .key {
     display: flex;
     flex-direction: column;
-    width: 3em;
-    height: 3em;
+    width: 2.9em;
+    height: 2.9em;
     border: solid 1px rgba(5, 39, 175, 1);
     justify-content: center;
     align-items: center;
-    margin: .2em;
+    margin: .1em;
     Border-radius: .1em;
     background-color: rgba(8, 11, 48, 1);
     color: rgba(202, 205, 251, 1);
@@ -144,27 +144,19 @@
 }
 
 .cyberpunk-style .key-shift {
-    width: 7.3em;
+    width: 6.87em;
 }
 
-.cyberpunk-style .key-backspace {
+.cyberpunk-style .key-backspace, .cyberpunk-style .key-tab {
     width: 4.5em;
 }
 
 .cyberpunk-style .key-space {
-    width: 32.3em;
+    width: 29.2em;
 }
 
-.cyberpunk-style .key-enter {
-    width: 6em;
-}
-
-.cyberpunk-style .key-tab {
-    width: 4.5em;
-}
-
-.cyberpunk-style .key-capslock {
-    width: 5em;
+.cyberpunk-style .key-enter, .cyberpunk-style .key-capslock {
+    width: 5.27em;
 }
 
 .cyberpunk-style .key-alt {

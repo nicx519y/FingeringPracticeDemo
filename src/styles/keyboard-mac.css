@@ -14,9 +14,9 @@
     justify-content: center;
     align-items: center;
     box-shadow: .1em .1em .5em rgba(0, 0, 0, 0.3);
-    background-color: #D3D3D3;
-    border: solid 1px black;
-    border-radius: .5em;
+    background-color: silver;
+    border: solid 1px silver;   
+    border-radius: .2em;
 }
 
 .mac-style .row {
@@ -31,42 +31,42 @@
 .mac-style .key {
     display: flex;
     flex-direction: column;
-    width: 3em;
-    height: 3em;
-    border: solid 1px black;
-    justify-content: center;
-    align-items: center;
-    margin: .2em;
-    Border-radius: .3em;
-    background-color: black;
+    width: 2.9em;
+    height: 2.9em;
+    border-radius: .2em;
     color: white;
-    box-shadow: .1em .1em .2em rgba(0, 0, 0, 0.7);
+    margin: .1em .1em .1em .1em;
+    background-color: black;
+    box-shadow: .1em .1em .2em 0em rgba(0, 0, 0, 0.7);
 }
 
 .mac-style .key .key-container {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    justify-content: left;
     width: 100%;
     height: 100%;
+    border-radius: .2em;
 }
 
-.mac-style .key.highlight {
+.mac-style .key.highlight .key-container {
     background-color: green;
     border-color: green;
     color: white;
 }
 
 .mac-style .key.highlight::after {
+    content: '';
     position: absolute;
-    width:inherit;
+    width: inherit;
     height: inherit;
     border-radius: .2em;
-    box-shadow: 0em 0em 0em 0em rgba(0, 255, 0, 0);
+    box-shadow: 0em 0em 0em 0em rgba(192, 192, 192, 0);
 
-    animation-name: keyHighlight1;
-    animation-duration: 4s;
+    
+
+    animation-name: mac-keyHighlight1;
+    animation-duration: 2s;
     animation-delay: 0s;
     animation-fill-mode: none;
     animation-iteration-count: infinite;
@@ -74,14 +74,15 @@
 }
 
 .mac-style .key.highlight::before {
+    content: '';
     position: absolute;
     width: inherit;
     height: inherit;
     border-radius: .2em;
-    box-shadow: 0em 0em 0em 0em rgba(0, 255, 0, 0);
+    box-shadow: 0em 0em 0em 0em rgba(192, 192, 192, 0);
 
-    animation-name: keyHighlight2;
-    animation-duration: 4s;
+    animation-name: mac-keyHighlight2;
+    animation-duration: 2s;
     animation-delay: .8s;
     animation-fill-mode: none;
     animation-iteration-count: infinite;
@@ -89,7 +90,11 @@
     animation-timing-function: ease-out;
 }
 
-@keyframes keyHighlight1 {
+.mac-style .key.highlight .key-container {
+    background-color: green;
+}
+
+@keyframes mac-keyHighlight1 {
     65% {
         box-shadow: 0em 0em 0em 2em rgba(0, 255, 0, .3);
     }
@@ -98,7 +103,7 @@
     }
 }
 
-@keyframes keyHighlight2 {
+@keyframes mac-keyHighlight2 {
     65% {
         box-shadow: 0em 0em 0em 1.8em rgba(0, 255, 0, .3);
     }
@@ -110,61 +115,55 @@
 .mac-style .key .key-label {
     display: flex;
     font-size: 1em;
-    justify-content: center;
     height: 100%;
     width: 100%;
     flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 .mac-style .key-label::after {
     content: attr(data-key);
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
     text-transform: uppercase;
-    transform: scale(1.1);
 }
 
 .mac-style .key-label::before {
     content: attr(data-subkey);
+    font-size: .6em;
     display: flex;
-    justify-content: center;
     align-items: center;
-    transform: scale(.8);
+    justify-content: center;
 }
 
-.mac-style .key-special .key-label {
-    height: auto;
-}
+/* .mac-style .key-special .key-label {
+
+} */
 
 .mac-style .key-special .key-label::after {
     transform: scale(.6);
-    font-weight: bold;
+    text-transform: none;
 }
 
 .mac-style .key-shift {
-    flex: 1;
-}
-
-.mac-style .key-backspace {
-    width: 4em;
+    width: 6.65em;
 }
 
 .mac-style .key-space {
-    flex: 1;
+    width: 28em;
 }
 
-.mac-style .key-enter {
-    flex: 1;
+.mac-style .key-enter, .mac-style .key-capslock {
+    width: 5.1em;
 }
 
-.mac-style .key-tab {
-    width: 4em;
+
+.mac-style .key-tab, .mac-style .key-backspace {
+    width: 4.2em;
 }
 
-.mac-style .key-capslock {
-    flex: 1;
-}
 
 .mac-style .key-alt {
     width: 5em;

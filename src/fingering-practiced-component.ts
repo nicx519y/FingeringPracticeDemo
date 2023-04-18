@@ -85,8 +85,12 @@ export class FingeringPracticedComponent extends DelegatedEventTarget {
     this.keyboard.action.addEventListener(KeyboardActionEvent.RIGHT, this._keyboardRightHandler);
     this.keyboard.action.addEventListener(KeyboardActionEvent.WRONG, this._keyboardWrongHandler);
 
-    this.element.appendChild(this.keyboard.element);
+    const box = document.createElement('div');
+    box.classList.add('keyboard-box');
+
+    box.appendChild(this.keyboard.element);
     this.element.appendChild(this.display.element);
+    this.element.appendChild(box);
 
     this.changeStyleMode(styleMode ? styleMode.toUpperCase() : 'CYBERPUNK');
 

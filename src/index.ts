@@ -6,8 +6,7 @@ import { DisplayConfigInterface } from './display-config';
 
 function main() {
 
-    const styleMode = getQueryString('style') || 'TERMINAL';
-    console.log(styleMode)
+    const styleMode = getQueryString('style') || 'vintage';
     const app = new FingeringPracticedComponent(styleMode);
     document.body.appendChild(app.element);
 
@@ -20,7 +19,7 @@ function main() {
                 ],
             },
             {
-                size: 1,
+                size: 1.5,
                 pages: [
                     `From fairest creatures we desire increase,\n`,
                     `That thereby beauty's rose might never die,\n`,

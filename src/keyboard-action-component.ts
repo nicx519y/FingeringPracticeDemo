@@ -70,41 +70,70 @@ export class KeyboardActionComponent extends DelegatedEventTarget {
 
         if(!this._currAction) return;
 
+        // 如果按的是控制键
         if([KeyboardControlKey.CTRL, KeyboardControlKey.SHIFT, KeyboardControlKey.ALT].indexOf(key as KeyboardControlKey) !== -1) {
+            //如果当前动作需要控制键
             if(this._currAction.control !== KeyboardControlKey.NONE) {
+                //如果按的不是当前需要的控制键
                 if(this._currAction.control !== key || this._currAction.location !== location) {
+                    //抛出错误事件
                     this.dispatchEvent(new CustomEvent(KeyboardActionEvent.WRONG, {
                         detail: { key: key }
                     }));
                 }
+            //如果当前动作不需要控制键
             } else {
+                //如果当前动作的结果不是按的这个键
                 if(this._currAction.keyResult !== key) {
+                    //抛出错误事件
                     this.dispatchEvent(new CustomEvent(KeyboardActionEvent.WRONG, {
                         detail: { key: key }
                     }));
+                //如果当前动作的结果是按的这个键
                 } else {
+                    //抛出正确事件
                     this.dispatchEvent(new CustomEvent(KeyboardActionEvent.RIGHT, {
                         detail: { key: key }
                     }));
                 }
             }
+        // 如果按的是非控制键
         } else {
+            //如果当前动作的结果不是按的这个键
             if(this._currAction.keyResult !== key) {
-                this.dispatchEvent(new CustomEvent(KeyboardActionEvent.WRONG, {
-                    detail: { key: key }
-                }));
+                //如果当前控制键不是shift 或者 当前控制键的位置不是要求的控制键的位置
+                if(this._currControlKey !== KeyboardControlKey.SHIFT || this._currControlLocation !== this._currAction.location) {
+                    //抛出错误事件
+                    this.dispatchEvent(new CustomEvent(KeyboardActionEvent.WRONG, {
+                        detail: { key: key }
+                    }));
+                //如果当前控制键是shift 并且 当前控制键的位置是要求的控制键的位置 并且 当前动作的结果是按的这个键
+                } else if(this._currAction.key === key) {
+                    //抛出正确事件
+                    this.dispatchEvent(new CustomEvent(KeyboardActionEvent.RIGHT, {
+                        detail: { key: key }
+                    }));
+                }
+            //如果当前动作的结果是按的这个键
             } else {
+                //如果当前动作需要控制键
                 if(this._currAction.control !== KeyboardControlKey.NONE) {
+                    //如果当前动作的控制键和按的控制键不一致
                     if(this._currAction.control !== this._currControlKey || this._currAction.location !== this._currControlLocation) {
+                        //抛出错误事件
                         this.dispatchEvent(new CustomEvent(KeyboardActionEvent.WRONG, {
                             detail: { key: key }
                         }));
+                    //如果当前动作的控制键和按的控制键一致
                     } else {
+                        //抛出正确事件
                         this.dispatchEvent(new CustomEvent(KeyboardActionEvent.RIGHT, {
                             detail: { key: key }
                         }));
                     }
+                //如果当前动作不需要控制键
                 } else {
+                    //抛出正确事件
                     this.dispatchEvent(new CustomEvent(KeyboardActionEvent.RIGHT, {
                         detail: { key: key }
                     }));

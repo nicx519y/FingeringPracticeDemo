@@ -148,40 +148,31 @@
 }
 
 .vintage-style .key-shift {
-    flex: 1;
+    width: 6.85em;
 }
 
 .vintage-style .key-shift .key-label::after {
     transform:scale(.6) translate(-1.8em, .1em);
 }
 
-.vintage-style .key-backspace {
-    width: 4em;
-}
-
 .vintage-style .key-space {
-    flex: 1;
+    width: 30.25em;
 }
 
-.vintage-style .key-enter {
-    flex: 1;
+.vintage-style .key-enter, .vintage-style .key-capslock {
+    width: 5.1em;
 }
 
 .vintage-style .key-enter .key-label::after {
     transform:scale(.6) translate(-1.3em, .1em);
 }
 
-.vintage-style .key-tab {
-    width: 4em;
+.vintage-style .key-tab, .vintage-style .key-backspace {
+    width: 4.2em;
 }
 
 .vintage-style .key-tab .key-label::after {
     transform:scale(.6) translate(-1em, .1em);
-}
-
-
-.vintage-style .key-capslock {
-    flex: 1;
 }
 
 .vintage-style .key-capslock .key-label::after {
