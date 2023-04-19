@@ -1,23 +1,42 @@
+
 .display-panel.effect-lightflash-in .page.show .word {
     opacity: 0;
-    animation-name: effect-lightflash-in, effect-lightflash-outline;
-    animation-duration: 1s, 3s;
-    animation-play-state: running, running;
-    animation-fill-mode: forwards, none;
-    animation-iteration-count: 1, infinite;
+    animation-name: effect-lightflash-outline;
+    animation-duration: 3s;
+    animation-play-state: running;
+    animation-fill-mode: forwards;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+
+.display-panel.effect-lightflash-in .page.show .word.show {
+    
+    animation-name: effect-lightflash-in;
+    animation-duration: 1s;
+    animation-play-state: running;
+    animation-fill-mode: forwards;
+    animation-iteration-count: 1;
     /* animation-timing-function: steps(10, start), linear; */
 }
 
-.display-panel.effect-lightflash-out .page.hide .word {
+.display-panel.effect-lightflash-in .page.show .word.showen {
+    opacity: 1;
+    
+}
+
+.display-panel.effect-lightflash-out .page.hide .word.hide {
     opacity: 1;
     animation-name: effect-lightflash-in;
     animation-duration: 1s;
     animation-play-state: running;
     animation-fill-mode: forwards;
     animation-iteration-count: 1;
-    /* animation-timing-function: steps(10, start); */
     animation-direction: reverse;
     
+}
+
+.display-panel.effect-lightflash-out .page.hide .word.hiden {
+    opacity: 0;
 }
 
 @keyframes effect-lightflash-in {

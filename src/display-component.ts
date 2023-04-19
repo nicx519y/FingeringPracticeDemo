@@ -11,6 +11,8 @@ export class DisplayComponent {
     _wordsElements: HTMLElement[] = [];
     _showenPage: number = -1;
     _effectDuration: number = 800;
+    _effectInOrder: 'asc' | 'desc' | 'random' = 'asc';    //文字特效的顺序
+    _effectOutOrder: 'asc' | 'desc' | 'random' = 'desc';   //文字特效的顺序
 
     constructor() {
         this.element = document.createElement('div');
@@ -55,6 +57,11 @@ export class DisplayComponent {
         this._wordsCounts = config.getWordsCountAllPage();
 
         this._setPageActive(0);
+    }
+
+    setEffectOrder(inOrder: 'asc' | 'desc' | 'random', outOrder: 'asc' | 'desc' | 'random') {
+        this._effectInOrder = inOrder;
+        this._effectOutOrder = outOrder;
     }
 
     //设置到某个word为止高亮
@@ -138,7 +145,8 @@ export class DisplayComponent {
             }, (ele, idx) => {
                 ele.classList.remove('hide');
                 ele.classList.add('hiden');
-            }
+            }, 
+            this._effectOutOrder,
             ).then(() => {
                 newIterator.run(
                     (ele, idx) => {
@@ -148,7 +156,8 @@ export class DisplayComponent {
                     (ele, idx) => {
                         ele.classList.remove('show');
                         ele.classList.add('showen');
-                    }
+                    },
+                    this._effectInOrder,
                     )
             });
         } else {
@@ -158,7 +167,9 @@ export class DisplayComponent {
             },(ele, idx) => {
                 ele.classList.remove('show');
                 ele.classList.add('showen');
-            })
+            },
+            this._effectInOrder,
+            )
         }
 
         this._showenPage = page;

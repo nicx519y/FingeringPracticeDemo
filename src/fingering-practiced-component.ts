@@ -36,17 +36,25 @@ export enum DisplayPageOutEffect {
   LIGHTFLASH = 'lightflash',
 }
 
+export enum WordEffectOrder {
+  ASC = 'asc',
+  DESC = 'desc',
+  RANDOM = 'random',
+}
+
 interface StyleMode {
   keyboard: KeyboardStyleMode;
   display: DisplayStyleMode;
   effectIn: DisplayPageInEffect;
   effectOut: DisplayPageOutEffect;
+  effectInOrder?: WordEffectOrder;
+  effectOutOrder?: WordEffectOrder;
 }
 
 export const StyleModes: Map<string, StyleMode> = new Map([
-  ['CYBERPUNK', { keyboard: KeyboardStyleMode.CYBERPUNK, display: DisplayStyleMode.CYBERPUNK, effectIn: DisplayPageInEffect.LIGHTFLASH, effectOut: DisplayPageOutEffect.LIGHTFLASH }],
-  ['TERMINAL', { keyboard: KeyboardStyleMode.VINTAGE, display: DisplayStyleMode.TERMINAL, effectIn: DisplayPageInEffect.FLOAT, effectOut: DisplayPageOutEffect.FLOAT }],
-  ['VINTAGE', { keyboard: KeyboardStyleMode.MAC, display: DisplayStyleMode.PAPER, effectIn: DisplayPageInEffect.FLY, effectOut: DisplayPageOutEffect.FLY }],
+  ['CYBERPUNK', { keyboard: KeyboardStyleMode.CYBERPUNK, display: DisplayStyleMode.CYBERPUNK, effectIn: DisplayPageInEffect.LIGHTFLASH, effectOut: DisplayPageOutEffect.LIGHTFLASH, effectInOrder: WordEffectOrder.RANDOM, effectOutOrder: WordEffectOrder.RANDOM }],
+  ['TERMINAL', { keyboard: KeyboardStyleMode.VINTAGE, display: DisplayStyleMode.TERMINAL, effectIn: DisplayPageInEffect.FLOAT, effectOut: DisplayPageOutEffect.FLOAT, effectInOrder: WordEffectOrder.ASC, effectOutOrder: WordEffectOrder.RANDOM }],
+  ['VINTAGE', { keyboard: KeyboardStyleMode.MAC, display: DisplayStyleMode.PAPER, effectIn: DisplayPageInEffect.FLY, effectOut: DisplayPageOutEffect.FLY, effectInOrder: WordEffectOrder.ASC, effectOutOrder: WordEffectOrder.DESC }],
 ]);
 
 export enum FingeringPracticedEvent {
@@ -133,6 +141,7 @@ export class FingeringPracticedComponent extends DelegatedEventTarget {
     this.changeDisplayStyleMode(m.display);
     this.changePageInEffectMode(m.effectIn);
     this.changePageOutEffectMode(m.effectOut);
+    this.display.setEffectOrder(m.effectInOrder, m.effectOutOrder);
   }
 
   //设置显示区域内容

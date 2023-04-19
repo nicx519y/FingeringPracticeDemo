@@ -35,7 +35,7 @@
     min-height: 1em;
     color: rgba(6, 8, 34, 1);
     text-shadow: 0em 0em .2em rgba(143, 164, 250, 1);
-    -webkit-text-stroke: .02em rgba(143, 164, 250, 1);
+    -webkit-text-stroke: .04em rgba(143, 164, 250, 1);
 }
 
 .cyberpunk-display-style .display-panel .word::before {
@@ -64,7 +64,7 @@
     50% {
         color: rgba(143, 164, 250, 1);
         text-shadow: 0em 0em .2em rgba(143, 164, 250, 1);
-        -webkit-text-stroke: .02em rgba(143, 164, 250, 1);
+        -webkit-text-stroke-color:  rgba(143, 164, 250, 1);
     }
 }
 
@@ -90,7 +90,7 @@
     color: white;
     opacity: 0;
 
-    animation-name: terminal-shake, terminal-hideout;
+    animation-name: cyberpunk-shake, terminal-hideout;
     animation-duration: .6s, 1s;
     animation-fill-mode: none none;
     animation-timing-function: ease-in-out, linear;
@@ -124,7 +124,7 @@
     }
 }
 
-@keyframes terminal-shake { /* 震动 */
+@keyframes cyberpunk-shake { /* 震动 */
     10%, 90% { transform: translate3d(-.02em, 0, 0); }
     20%, 80% { transform: translate3d(+.04em, 0, 0); }
     30%, 70% { transform: translate3d(-.08em, 0, 0); }

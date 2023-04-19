@@ -56,6 +56,21 @@
     border-color: rgba(143, 164, 250, 1);
     box-shadow: 0em 0em .4em .2em rgba(143, 164, 250, 1);
     color: white;
+
+    animation-name: cyberpunk-key;
+    animation-duration: 3s;
+    animation-delay: 0s;
+    animation-fill-mode: none;
+    animation-iteration-count: infinite;
+    animation-play-state: running;
+}
+
+@keyframes cyberpunk-key {
+    50% {
+        background-color: rgba(5, 39, 175, .5);
+        border-color: rgba(143, 164, 250, .5);
+        box-shadow: 0em 0em .4em .2em rgba(143, 164, 250, .5);
+    }
 }
 
 .cyberpunk-style .key.highlight::after {
