@@ -130,14 +130,12 @@ export class DisplayComponent {
                 ele.classList.remove('active', 'show');
                 ele.classList.add('hide');
             }).then(() => {
-                newIterator.run((ele, idx) => {
-                    ele.classList.add('show');
-                });
+                newIterator.run((ele, idx) => ele.classList.add('show'))
+                    .then(eles => eles.forEach(ele => ele.classList.remove('show')))
             });
         } else {
-            newIterator.run((ele, idx) => {
-                ele.classList.add('show');
-            });
+            newIterator.run((ele, idx) => ele.classList.add('show'))
+                .then(eles => eles.forEach(ele => ele.classList.remove('show')));
         }
 
         this._showenPage = page;
