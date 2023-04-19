@@ -1,13 +1,8 @@
 
-@font-face {
-    font-family: 'Gasping';
-    src: url('../fonts/Gasping.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-}
 
 .cyberpunk-style {
-    font-family: 'Gasping', sans-serif;
+    font-family: 'Gasping';
+    font-display: block;
     font-weight: bold;
     padding: .2em;
     flex-direction: column;

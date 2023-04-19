@@ -53,6 +53,8 @@ body {
     user-select: none;
 }
 
+@import './loading.css';
+@import './fonts.css';
 
 @import './display-page-effect-fade.css';
 @import './display-page-effect-fly-1by1.css';

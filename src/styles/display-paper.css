@@ -1,9 +1,4 @@
-@font-face {
-    font-family: 'Courier New';
-    src: url('../fonts/Courier-New-Regular.ttf');
-    font-weight: normal;
-    font-style: normal;
-}
+
 
 .paper-style.fingering-practiced {
     background-color: #FFFFF2;
@@ -12,7 +7,8 @@
 .paper-style .display-panel {
     justify-content: center;
     align-items: center;
-    font-family: 'Courier New', sans-serif;
+    font-family: 'Courier New';
+    font-display: block;
 }
 
 .paper-style .display-panel .row {

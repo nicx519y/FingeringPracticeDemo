@@ -6,6 +6,7 @@ import { DisplayConfigInterface } from './display-config';
 
 function main() {
 
+    document.querySelector('.loading').remove();
     const styleMode = getQueryString('style') || 'vintage';
     const app = new FingeringPracticedComponent(styleMode);
     document.body.appendChild(app.element);
@@ -42,8 +43,6 @@ function main() {
 
     let num: number = 0;
 
-   
-
     app.addEventListener(FingeringPracticedEvent.Complete, (event: CustomEvent) => {
         const result: boolean = window.confirm(`
             恭喜完成测试
@@ -79,6 +78,29 @@ function main() {
 };
 
 
+function loadFonts(): Promise<FontFace[]> {
+
+    const fontUrls: { url:string, name: string }[] = [
+        { url: './fonts/Courier-New-Regular.ttf', name: 'Courier New' },
+        { url: './fonts/Cyberion-Regular.ttf', name: 'Cyberion' },
+        { url: './fonts/Gasping.ttf', name: 'Gasping' },
+        { url: './fonts/Verdana-Regular.ttf', name: 'Verdana' },
+    ];
+
+    return Promise.all(fontUrls.map(item => {
+        const font = new FontFace(item.name, `url(${item.url})`);
+        console.log('load font', item.name, item.url);
+        return font.load()
+            .then(f => {
+                console.log('font loaded', f);
+                (document.fonts as any).add(f);
+                return f;
+            });
+    }));
+
+}
+
+
 function getQueryString(name: string, search: string = null): string | null {
     try {
         search = search ||  window.location.search.substr(1) || window.location.hash.split("?")[1];
@@ -90,7 +112,10 @@ function getQueryString(name: string, search: string = null): string | null {
     }
   }
 
-window.onload = () => main();
+window.onload = () => {
+    loadFonts().then(() => main());
+};
+
 
 
 

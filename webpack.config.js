@@ -20,14 +20,14 @@ module.exports = {
                 test: /\.(mp3|wav)$/i,
                 type: 'asset/resource',
                 generator: {
-                    filename: 'audios/[hash][ext]',
+                    filename: 'audios/[name][ext]',
                 }
             },
             {
                 test: /\.(ttf|eot|woff2?)$/i,
                 type: 'asset/resource',
                 generator: {
-                    filename: 'fonts/[hash][ext]',
+                    filename: 'fonts/[name][ext]',
                 }
             },
         ],

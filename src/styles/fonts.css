@@ -1,0 +1,28 @@
+
+@font-face {
+    font-family: 'Cyberion';
+    src: url('../fonts/Cyberion-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Courier New';
+    src: url('../fonts/Courier-New-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Gasping';
+    src: url('../fonts/Gasping.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Verdana';
+    src: url('../fonts/Verdana-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
