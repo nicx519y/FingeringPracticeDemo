@@ -11,12 +11,24 @@
     animation-iteration-count: 1;
 }
 
+.display-panel.effect-fly-in .page.show .word.showen {
+    opacity: 1;
+    scale: 1;
+    transform: translateX(0);
+}
+
 .display-panel.effect-fly-out .page.hide .word.hide {
     animation-name: effect-fly-out;
     animation-duration: .8s;
     animation-play-state: running;
     animation-fill-mode: forwards;
     animation-iteration-count: 1;
+}
+
+.display-panel.effect-fly-out .page.hide .word.hiden {
+    opacity: 0;
+    scale: 1;
+    transform: translateX(2vw);
 }
 
 @keyframes effect-fly-in {

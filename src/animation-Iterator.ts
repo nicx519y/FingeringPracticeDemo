@@ -1,14 +1,22 @@
 export class AnimationIterator {
 
-    eles: NodeListOf<Element>;
+    eles: NodeListOf<HTMLElement>;
     _delay: number;
 
-    constructor(eles: NodeListOf<Element>, duration: number = 0) {
+    constructor(
+        eles: NodeListOf<HTMLElement>, 
+        duration: number = 0, 
+        ) {
         this.eles = eles;
         this._delay = duration / eles.length;
+
     }
 
-    run(doSamething: (ele: Element, i: number) => void): Promise<NodeListOf<Element>> {
+    run(
+        doSamething: (ele: HTMLElement, i: number) => void,
+        whenComplete?: (ele: HTMLElement, i: number) => void,
+        ): Promise<NodeListOf<HTMLElement>> {
+
         return new Promise((resolve, reject) => {
             let i = 0;
             const len = this.eles.length;
@@ -17,10 +25,15 @@ export class AnimationIterator {
                     clearInterval(timer);
                     resolve(this.eles);
                 } else {
-                    doSamething(this.eles[i], i);
+                    const  ele = this.eles[i];
+                    if(whenComplete) {
+                        ele.addEventListener('animationend', () => whenComplete(ele, i), { once: true });
+                    }
+                    doSamething(ele, i);
                     i++;
                 }
             }, this._delay);
         });
     }
+
 }

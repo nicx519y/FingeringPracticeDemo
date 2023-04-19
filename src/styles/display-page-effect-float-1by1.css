@@ -12,6 +12,11 @@
     animation-iteration-count: 1;
 }
 
+.display-panel.effect-float-in .page.show .word.showen {
+    opacity: 1;
+    transform: translateY(0);
+}
+
 .display-panel.effect-float-out .page.hide .word.hide {
     animation-name: effect-float-out;
     animation-duration: .3s;
@@ -19,6 +24,11 @@
     animation-play-state: running;
     animation-fill-mode: forwards;
     animation-iteration-count: 1;
+}
+
+.display-panel.effect-float-out .page.hide .word.hiden {
+    opacity: 0;
+    transform: translateY(50vh);
 }
 
 @keyframes effect-float-in {

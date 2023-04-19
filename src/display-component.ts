@@ -116,26 +116,49 @@ export class DisplayComponent {
             pageElementOld.classList.remove('active', 'show');
             pageElementOld.classList.add('complete', 'hide');
 
-            oldIterator = new AnimationIterator(pageElementOld.querySelectorAll('.word'), this._effectDuration);
+            oldIterator = new AnimationIterator(
+                pageElementOld.querySelectorAll('.word'), 
+                this._effectDuration,
+                );
         }
 
         const pageElementNew = this._pagesElements[page];
         pageElementNew.classList.add('active', 'show');
         pageElementNew.classList.remove('complete', 'hide');
 
-        newIterator = new AnimationIterator(pageElementNew.querySelectorAll('.word'), this._effectDuration);
+        newIterator = new AnimationIterator(
+            pageElementNew.querySelectorAll('.word'), 
+            this._effectDuration,
+            );
         
         if(oldIterator) {
             oldIterator.run((ele, idx) => {
-                ele.classList.remove('active', 'show');
+                ele.classList.remove('complete', 'active', 'show', 'showen', 'hiden');
                 ele.classList.add('hide');
-            }).then(() => {
-                newIterator.run((ele, idx) => ele.classList.add('show'))
-                    .then(eles => eles.forEach(ele => ele.classList.remove('show')))
+            }, (ele, idx) => {
+                ele.classList.remove('hide');
+                ele.classList.add('hiden');
+            }
+            ).then(() => {
+                newIterator.run(
+                    (ele, idx) => {
+                        ele.classList.remove('showen', 'hide', 'hiden');
+                        ele.classList.add('show')
+                    },
+                    (ele, idx) => {
+                        ele.classList.remove('show');
+                        ele.classList.add('showen');
+                    }
+                    )
             });
         } else {
-            newIterator.run((ele, idx) => ele.classList.add('show'))
-                .then(eles => eles.forEach(ele => ele.classList.remove('show')));
+            newIterator.run((ele, idx) => {
+                ele.classList.remove('showen', 'hide', 'hiden');
+                ele.classList.add('show');
+            },(ele, idx) => {
+                ele.classList.remove('show');
+                ele.classList.add('showen');
+            })
         }
 
         this._showenPage = page;
