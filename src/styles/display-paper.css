@@ -43,18 +43,15 @@
     width: inherit;
     height: inherit;
     border-radius: .1em;
-    border: solid 1px #FFFFF2;
 }
 
 .paper-style .display-panel .word.complete::before {
-    background-color: #eee;
-    border-color: #eee;
+    background-color: transparent;
     color: black;
 }
 
 .paper-style .display-panel .word.active::before {
     background-color: green;
-    border-color: green;
     color: white;
 }
 

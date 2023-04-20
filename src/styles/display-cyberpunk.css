@@ -25,9 +25,8 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    height: 1.3em;
     min-width: .5em;
-    min-height: 1em;
+    height: 1em;
     color: rgba(6, 8, 34, 1);
     text-shadow: 0em 0em .2em rgba(143, 164, 250, 1);
     -webkit-text-stroke: .04em rgba(143, 164, 250, 1);
@@ -37,10 +36,11 @@
     content: attr(data-word);
     display: flex;
     width: inherit;
-    height: inherit;
+    height: .9em;
     min-width: .5em;
     justify-content: center;
     align-items: center;
+    border-bottom: solid .1em rgba(143, 164, 250, 0);
 }
 
 .cyberpunk-display-style .display-panel .word.complete::before {
@@ -60,10 +60,12 @@
         color: rgba(143, 164, 250, 1);
         text-shadow: 0em 0em .2em rgba(143, 164, 250, 1);
         -webkit-text-stroke-color:  rgba(143, 164, 250, 1);
+        border-color: rgba(143, 164, 250, 1);
     }
 }
 
 .cyberpunk-display-style .display-panel .word.wrong-word::before {
+    
     opacity: 0;
     animation-name: cyberpunk-hidein, cyberpunk-active-word;
     animation-duration: 1s, 1s;
@@ -81,9 +83,10 @@
     height: inherit;
     justify-content: center;
     align-items: center;
-    background-color: red;
     color: white;
     opacity: 0;
+    background-color: red;
+    -webkit-text-stroke-width: 0;
 
     animation-name: cyberpunk-shake, terminal-hideout;
     animation-duration: .6s, 1s;

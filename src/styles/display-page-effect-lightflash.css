@@ -1,12 +1,6 @@
 
 .display-panel.effect-lightflash-in .page.show .word {
     opacity: 0;
-    animation-name: effect-lightflash-outline;
-    animation-duration: 3s;
-    animation-play-state: running;
-    animation-fill-mode: forwards;
-    animation-iteration-count: infinite;
-    animation-timing-function: linear;
 }
 
 .display-panel.effect-lightflash-in .page.show .word.show {
@@ -50,7 +44,7 @@
         opacity: 0;
     }
     20% {
-        opacity: 0;
+        opacity: .3;
     }
     30% {
         opacity: 0;
@@ -72,13 +66,5 @@
     }
     100% {
         opacity: 1;
-    }
-}
-
-@keyframes effect-lightflash-outline {
-    50% {
-        color: rgba(6, 8, 34, 1);
-        text-shadow: 0em 0em 0em rgba(143, 164, 250, .4);
-        -webkit-text-stroke-color: rgba(143, 164, 250, .4);
     }
 }

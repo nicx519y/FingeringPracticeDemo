@@ -13,8 +13,7 @@
 
 .display-panel.effect-fly-in .page.show .word.showen {
     opacity: 1;
-    scale: 1;
-    transform: translateX(0);
+    transform: scale(1) translateX(0);
 }
 
 .display-panel.effect-fly-out .page.hide .word.hide {
@@ -27,51 +26,43 @@
 
 .display-panel.effect-fly-out .page.hide .word.hiden {
     opacity: 0;
-    scale: 1;
-    transform: translateX(2vw);
+    transform: scale(1) translateX(2vw);
 }
 
 @keyframes effect-fly-in {
     0% {
         opacity: 0;
-        transform: translateX(-50vw);
+        transform: scale(1) translateX(-50vw);
     }
     70% {
         opacity: .98;
-        scale: 5;
-        transform: translateX(.5vw);
+        transform: scale(5) translateX(.5vw);
     }
     100% {
         opacity: 1;
-        scale: 1;
-        transform: translateX(0);
+        transform: scale(1) translateX(0);
     }
 }
 
 @keyframes effect-fly-out {
     0% {
         opacity: 1;
-        scale: 1;
-        transform: translateX(0);
+        transform: scale(1) translateX(0);
     }
     30% {
         opacity: .98;
-        scale: .5;
-        transform: translateX(-2vw);
+        transform: scale(.5) translateX(-2vw);
     }
     50% {
         opacity: .98;
-        scale: .2;
-        transform: translateX(-7vw);
+        transform: scale(.2) translateX(-7vw);
     }
     70% {
         opacity: .5;
-        scale: 3;
-        transform: translateX(-2vw);
+        transform: scale(3) translateX(-2vw);
     }
     100% {
         opacity: 0;
-        scale: 1;
-        transform: translateX(2vw);
+        transform: scale(1) translateX(2vw);
     }
 }
