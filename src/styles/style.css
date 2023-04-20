@@ -1,3 +1,21 @@
+@import './loading.css';
+@import './fonts.css';
+
+@import './display-page-effect-fade.css';
+@import './display-page-effect-fly-1by1.css';
+@import './display-page-effect-float-1by1.css';
+@import './display-page-effect-lightflash.css';
+
+@import './keyboard-mac.css';
+@import './keyboard-vintage.css';
+@import './keyboard-cyberpunk.css';
+
+@import './display-paper.css';
+@import './display-terminal.css';
+@import './display-cyberpunk.css';
+
+@import './simple-modal.css';
+
 @media screen and (max-width: 600px) {
     .fingering-practiced .display-panel .page {
         transform: scale(.5);
@@ -50,41 +68,27 @@ body {
     font-size: 16px;
     overflow: hidden;
     font-family: 'Arial', sans-serif;
+    -webkit-user-select: none;
     user-select: none;
 }
-
-@import './loading.css';
-@import './fonts.css';
-
-@import './display-page-effect-fade.css';
-@import './display-page-effect-fly-1by1.css';
-@import './display-page-effect-float-1by1.css';
-@import './display-page-effect-lightflash.css';
-
-@import './keyboard-mac.css';
-@import './keyboard-vintage.css';
-@import './keyboard-cyberpunk.css';
-
-@import './display-paper.css';
-@import './display-terminal.css';
-@import './display-cyberpunk.css';
 
 
 .tools-bar {
     flex: 0;
-    height: 1.6em;
+    height: 1.8em;
     font-size: 10px;
     padding: .2em .8em;
-    background-color: silver;
-    border-bottom: solid 1px black;
+    background-color: dodgerblue;
     vertical-align: middle;
     overflow: hidden;
 }
 
 .tools-bar span {
-    margin-left: 1em;
+    color: white;
+    margin-left: .5em;
+    line-height: .4em;
     text-transform: uppercase;
-    vertical-align: middle;
+    vertical-align: baseline;
 }
 
 .tools-bar select {

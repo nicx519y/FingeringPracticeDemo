@@ -1,0 +1,152 @@
+.simple-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: dodgerblue;
+    z-index: 2000;
+
+    justify-content: center;
+    align-items: center;
+
+    transform: scale(.1, .005);
+}
+
+.simple-modal.show {
+    display: flex;
+    animation-name: modal-show;
+    animation-duration: 1.5s;
+    animation-fill-mode: forwards;
+    animation-iteration-count: 1;
+    animation-play-state: running;
+}
+
+.simple-modal.hide {
+    animation-name: modal-show;
+    animation-duration: 1.5;
+    animation-fill-mode: forwards;
+    animation-iteration-count: 1;
+    animation-play-state: running;
+    animation-direction: reverse;
+    animation-delay: 1s;
+}
+
+.simple-modal.showen {
+    display: flex;
+    transform: scale(1, 1);
+}
+
+.simple-modal .simple-modal-content {
+    opacity: 0;
+    color: white;
+    flex-direction: column;
+}
+
+.simple-modal .simple-modal-content p {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    margin: 0;
+    padding: 0;
+    font-size: 2.2em;
+    font-style: italic;
+}
+
+.simple-modal .simple-modal-content p.rate {
+    font-size: 1.2em;
+}
+
+.simple-modal .simple-modal-content p.rate span {
+    font-size: 1.6em;
+    font-weight: bold;
+    line-height: .8em;
+    color: yellow;
+}
+
+.simple-modal.showen .simple-modal-content,
+.simple-modal.showen .simple-modal-btns {
+    display: flex;
+    animation-name: model-content-show;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+    animation-iteration-count: 1;
+    animation-play-state: running;
+    animation-timing-function: ease-out;
+}
+
+.simple-modal.hide .simple-modal-content,
+.simple-modal.hide .simple-modal-btns {
+    animation-name: model-content-show;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+    animation-iteration-count: 1;
+    animation-play-state: running;
+    animation-timing-function: ease-out;
+    animation-direction: reverse;
+}
+
+.simple-modal.hiden {
+    display: none;
+}
+
+@keyframes modal-show {
+    50% {
+        transform: scale(1, .005);
+    }
+    100% {
+        transform: scale(1, 1);
+    }
+}
+
+@keyframes model-content-show {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.simple-modal .simple-modal-btns {
+    display: flex;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 5em;
+    width: 100%;
+    flex-direction: row;
+    opacity: 0;
+}
+
+.simple-modal .btn-box {
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    cursor: pointer;
+
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: bold;
+    font-size: 1.8em;
+    font-style: italic;
+    color: white;
+}
+
+.simple-modal .btn-box .next-btn {
+    color: yellow;
+    animation: btn-move .5s linear 0s infinite;
+}
+
+.simple-modal .btn-box .replay-btn {
+    color: rgba(255, 255, 255, .5);
+}
+
+.simple-modal .simple-modal-btn .btn-box:hover {
+    background-color: rgba(255, 255, 255, .1);
+}
+
+@keyframes btn-move {
+    100% {
+        transform: translateX(.2em);
+    }
+}

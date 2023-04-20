@@ -3,10 +3,18 @@ import './styles/style.css';
 
 import { FingeringPracticedComponent, FingeringPracticedEvent, StyleModes } from './fingering-practiced-component';
 import { DisplayConfigInterface } from './display-config';
+import { MyModal } from './my-modal';
 
 function main() {
 
     document.querySelector('.loading').remove();
+
+    const resultModal = new MyModal([
+        { label: '< Replay', className: 'replay-btn', callback: () => replay() },
+        { label: 'Next >', className: 'next-btn', callback: () => next() },
+    ]);
+    document.body.appendChild(resultModal.element);
+
     const styleMode = getQueryString('style') || 'vintage';
     const app = new FingeringPracticedComponent(styleMode);
     document.body.appendChild(app.element);
@@ -44,17 +52,7 @@ function main() {
     let num: number = 0;
 
     app.addEventListener(FingeringPracticedEvent.Complete, (event: CustomEvent) => {
-        const result: boolean = window.confirm(`
-            恭喜完成测试
-            耗时：${Math.round(event.detail.timeElapsed / 1000)} 秒，正确率：${Math.round(event.detail.rightRate * 100)}%
-        `);
-
-        if(result === true) {
-            num = (num + 1) % configs.length;
-            app.setContent(configs[num]);
-        } else {
-            app.setContent(configs[num]);
-        }
+        openModal(event.detail.timeElapsed / 1000, event.detail.rightRate * 100);
     });
 
     app.setContent(configs[num]);
@@ -75,6 +73,29 @@ function main() {
     styleSelect.addEventListener('change', (event: Event) => 
         app.changeStyleMode((event.target as HTMLSelectElement).value));
 
+
+    function openModal(timeElapsed: number, rightRate: number) {
+        resultModal.setContent(`
+        <p>Congratulations!</p>
+        <p>You finished the game!</p>
+        <p class="rate" >Right Rate: <span id="right-rate">${ Math.round(rightRate).toString() }</span>%</p>
+        <p class="rate" >Time Elapsed: <span id="time-elapsed">${ Math.round(timeElapsed).toString() }</span> seconds</p>
+        `);
+
+        resultModal.show();
+    }
+    function next() {
+        resultModal.hide()
+            .then(() => {
+                num = (num + 1) % configs.length;
+                app.setContent(configs[num]);
+            });
+    }
+
+    function replay() {
+        resultModal.hide()
+            .then(() => app.setContent(configs[num]));
+    }
 };
 
 
@@ -89,7 +110,6 @@ function loadFonts(): Promise<FontFace[]> {
 
     return Promise.all(fontUrls.map(item => {
         const font = new FontFace(item.name, `url(${item.url})`);
-        console.log('load font', item.name, item.url);
         return font.load()
             .then(f => {
                 console.log('font loaded', f);
