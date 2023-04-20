@@ -9,18 +9,20 @@ export class MyModal {
         this._btns = btns.map(btn => {
             const div = document.createElement('div');
             div.classList.add('simple-modal-btn', btn.className);
-            div.innerText = btn.label;
-            div.addEventListener('click', () => btn.callback(btn.label));
+            div.innerHTML = `
+                <span>${btn.label}</span>
+            `;
+            div.addEventListener('click', () => btn.callback && btn.callback(btn.label));
             return div;
         });
 
         this.element.innerHTML = `
             <div class="simple-modal-content">
             </div>
-            <div class="simple-modal-btns">
-                ${ this._btns.map(btn => '<div class="btn-box" >' + btn.outerHTML + '</div>').join('') }
-            </div>
+            <div class="simple-modal-btns"></div>
         `;
+
+        this.element.querySelector('.simple-modal-btns').append(...this._btns);
     }
 
     setContent(content: string) {
@@ -44,6 +46,7 @@ export class MyModal {
             this.element.classList.remove('showen', 'show', 'hiden');
             
             this.element.addEventListener('animationend', () => {
+                console.log('animationend');
                 this.element.classList.remove('hide');
                 this.element.classList.add('hiden');
                 resolve();

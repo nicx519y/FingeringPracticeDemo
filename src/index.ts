@@ -10,8 +10,8 @@ function main() {
     document.querySelector('.loading').remove();
 
     const resultModal = new MyModal([
-        { label: '< Replay', className: 'replay-btn', callback: () => replay() },
-        { label: 'Next >', className: 'next-btn', callback: () => next() },
+        { label: '< Retry', className: 'retry-btn', callback: retry },
+        { label: 'Next >', className: 'next-btn', callback: next },
     ]);
     document.body.appendChild(resultModal.element);
 
@@ -64,7 +64,6 @@ function main() {
         option.value = key;
         option.innerText = key;
         styleSelect.appendChild(option);
-        console.log(key, styleMode)
         if(key.toLowerCase() === styleMode.toLowerCase()) {
             option.selected = true;
         }
@@ -92,7 +91,7 @@ function main() {
             });
     }
 
-    function replay() {
+    function retry() {
         resultModal.hide()
             .then(() => app.setContent(configs[num]));
     }

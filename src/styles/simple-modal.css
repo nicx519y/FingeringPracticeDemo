@@ -1,3 +1,29 @@
+@media screen and (min-height: 1200px) {
+    .simple-modal {
+        font-size: 24px;
+    }
+}
+
+
+@media screen and (max-width: 600px) {
+    .simple-modal {
+        font-size: 12px;
+    }
+}
+
+@media screen and (max-height: 600px) {
+    .simple-modal {
+        font-size: 14px;
+    }
+}
+
+@media screen and (max-height: 300px) {
+    .simple-modal {
+        font-size: 10px;
+    }
+}
+
+
 .simple-modal {
     position: fixed;
     top: 0;
@@ -10,26 +36,27 @@
     justify-content: center;
     align-items: center;
 
-    transform: scale(.1, .005);
+    transform: scale(.005, .005);
 }
 
 .simple-modal.show {
     display: flex;
     animation-name: modal-show;
-    animation-duration: 1.5s;
+    animation-duration: 1s;
     animation-fill-mode: forwards;
     animation-iteration-count: 1;
     animation-play-state: running;
 }
 
 .simple-modal.hide {
-    animation-name: modal-show;
-    animation-duration: 1.5;
+    display: flex;
+    transform: scale(1, 1);
+    animation-name: modal-hide;
+    animation-duration: 1s;
     animation-fill-mode: forwards;
     animation-iteration-count: 1;
     animation-play-state: running;
-    animation-direction: reverse;
-    animation-delay: 1s;
+    animation-delay: .5s;
 }
 
 .simple-modal.showen {
@@ -65,23 +92,25 @@
 .simple-modal.showen .simple-modal-content,
 .simple-modal.showen .simple-modal-btns {
     display: flex;
-    animation-name: model-content-show;
-    animation-duration: 1s;
+    animation-name: modal-content-show;
+    animation-duration: .5s;
     animation-fill-mode: forwards;
     animation-iteration-count: 1;
     animation-play-state: running;
-    animation-timing-function: ease-out;
+    animation-timing-function: linear;
 }
 
 .simple-modal.hide .simple-modal-content,
 .simple-modal.hide .simple-modal-btns {
-    animation-name: model-content-show;
-    animation-duration: 1s;
+    display: flex;
+    opacity: 1;
+    animation-name: modal-content-hide;
+    animation-duration: 1.5s;
     animation-fill-mode: forwards;
     animation-iteration-count: 1;
     animation-play-state: running;
-    animation-timing-function: ease-out;
-    animation-direction: reverse;
+    animation-timing-function: linear;
+    animation-delay: 0s;
 }
 
 .simple-modal.hiden {
@@ -89,6 +118,9 @@
 }
 
 @keyframes modal-show {
+    0% {
+        transform: scale(.005, .005);
+    }
     50% {
         transform: scale(1, .005);
     }
@@ -97,7 +129,19 @@
     }
 }
 
-@keyframes model-content-show {
+@keyframes modal-hide {
+    0% {
+        transform: scale(1, 1);
+    }
+    50% {
+        transform: scale(1, .005);
+    }
+    100% {
+        transform: scale(.005, .005);
+    }
+}
+
+@keyframes modal-content-show {
     0% {
         opacity: 0;
     }
@@ -106,18 +150,31 @@
     }
 }
 
+@keyframes modal-content-hide {
+    0% {
+        opacity: 1;
+    }
+    20% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+
 .simple-modal .simple-modal-btns {
     display: flex;
     position: absolute;
     bottom: 0;
     left: 0;
-    height: 5em;
+    height: 10em;
     width: 100%;
     flex-direction: row;
     opacity: 0;
 }
 
-.simple-modal .btn-box {
+.simple-modal .simple-modal-btn {
     display: flex;
     flex: 1;
     justify-content: center;
@@ -132,16 +189,16 @@
     color: white;
 }
 
-.simple-modal .btn-box .next-btn {
+.simple-modal .next-btn {
     color: yellow;
     animation: btn-move .5s linear 0s infinite;
 }
 
-.simple-modal .btn-box .replay-btn {
+.simple-modal .replay-btn {
     color: rgba(255, 255, 255, .5);
 }
 
-.simple-modal .simple-modal-btn .btn-box:hover {
+.simple-modal .simple-modal-btn:hover {
     background-color: rgba(255, 255, 255, .1);
 }
 
