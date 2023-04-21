@@ -1,5 +1,5 @@
 import wrongMp3 from './audios/wrong.mp3';
-import keyMp3 from './audios/key.mp3';
+import keyMp3 from './audios/key.wav';
 
 import { KeyboardComponent } from './keyboard-component';
 import { DisplayComponent } from './display-component';
@@ -74,7 +74,7 @@ export class FingeringPracticedComponent extends DelegatedEventTarget {
   _wrongCount: number = 0;
   _rightCount: number = 0;
   _wrongAudio: MyAudio = new MyAudio(wrongMp3, 0, 1);
-  _keyAudio: MyAudio = new MyAudio(keyMp3, 1.115, 1.5);
+  _keyAudio: MyAudio = new MyAudio(keyMp3, .05, .4);
   _currKeyboardStyleMode: KeyboardStyleMode = KeyboardStyleMode.VINTAGE;
   _currDisplayStyleMode: DisplayStyleMode = DisplayStyleMode.TERMINAL;
   _currPageInEffectMode: DisplayPageInEffect = DisplayPageInEffect.FLOAT;
@@ -137,11 +137,13 @@ export class FingeringPracticedComponent extends DelegatedEventTarget {
       this._currStyleMode = mode;
     }
     
-    this.changeKeyboardStyleMode(m.keyboard);
-    this.changeDisplayStyleMode(m.display);
-    this.changePageInEffectMode(m.effectIn);
-    this.changePageOutEffectMode(m.effectOut);
-    this.display.setEffectOrder(m.effectInOrder, m.effectOutOrder);
+    if(m !== undefined) {
+      this.changeKeyboardStyleMode(m.keyboard);
+      this.changeDisplayStyleMode(m.display);
+      this.changePageInEffectMode(m.effectIn);
+      this.changePageOutEffectMode(m.effectOut);
+      this.display.setEffectOrder(m.effectInOrder, m.effectOutOrder);
+    }
   }
 
   //设置显示区域内容
@@ -150,10 +152,12 @@ export class FingeringPracticedComponent extends DelegatedEventTarget {
     this._wrongCount = 0;
     this._rightCount = 0;
 
-    const c: DisplayConfig = new DisplayConfig(config);
+    const c: DisplayViewModel = new DisplayConfig(config).parseToViewModel();
+
+    console.log('model: ', c)
 
     this.display.setContent(c);
-    this.words = c.parseToWords();
+    this.words = c.words;
     this.wordOffset = 0;
     this._startTime = new Date();
   }

@@ -15,30 +15,83 @@ function main() {
     ]);
     document.body.appendChild(resultModal.element);
 
-    const styleMode = getQueryString('style') || 'vintage';
+    const styleMode = getQueryString('style') || 'terminal';
     const app = new FingeringPracticedComponent(styleMode);
     document.body.appendChild(app.element);
 
     const configs: DisplayConfigInterface[] = [
+            // {
+            //     size: 3,
+            //     pages: [
+            //         `Hello World!\n`,
+            //         `Getting Start!\n`,
+            //     ],
+            // },
+            // {
+            //     size: 5,
+            //     pages: [
+            //         `jjjjjjjj`,
+            //         `jjjjjjjj`,
+            //     ],
+            // },
+            // {
+            //     size: 5,
+            //     pages: [
+            //         `fffjfffj`,
+            //         `fffjjjjf`,
+            //         `jjfjfffj`,
+            //     ],
+            // },
+            // {
+            //     size: 5,
+            //     pages: [
+            //         `j f j f`,
+            //         `f j fj j`,
+            //         `f jjj ff`,
+            //     ],
+            // },
             {
-                size: 3,
+                size: 2,
                 pages: [
-                    `Hello World!\n`,
-                    `Getting Start!\n`,
+                    `jjff fffjj fjjfjfj fjfjfjjf ffjjffff
+                     ffjjj jfjjjf ffjffjjff fffjj fjjjfjfj
+                     fjfjfjjf ffjjf fff ffjjj jfjjjf ffjff`,
                 ],
             },
             {
-                size: 1.7,
+                size: 5,
                 pages: [
-                    `From fairest creatures we desire increase,\n`,
-                    `That thereby beauty's rose might never die,\n`,
-                    `But as the riper should by time decease,\n`,
-                    `His tender heir might bear his memory:\n`,
-                    `But thou contracted to thine own bright eyes,\n`,
-                    `Feed'st thy light's flame with self-substantial fuel,\n`,
-                    `Making a famine where abundance lies,\n`,
-                    `Thy self thy foe, to thy sweet self too cruel.\n`,
-                    `Thou that art now the world's fresh ornament,\n`,
+                    `uuujuuuj`,
+                    `uujjuujj`,
+                    `uj uujuu`,
+                ],
+            },
+            {
+                size: 5,
+                pages: [
+                    `rrrfrrrf`,
+                    `rrffrrfr`,
+                    `f rr frr`,
+                ]
+            },
+            {
+                size: 5,
+                pages: [
+                    `kkkkkkkk`,
+                    `kkkkjjjj`,
+                    `kkjjkkjk`,
+                ],
+            },
+            {
+                size: 2,
+                pages: [
+                    `kkjfrrkkjfrrkkjfrrkkjfrrkkjfrrjk
+                    rrrrkkjfrrkkjfrrkkjfrrkkjfrrkkjfrrrr`
+                ],
+            },
+            {
+                size: 2,
+                    pages: [
                     `And only herald to the gaudy spring,\n`,
                     `Within thine own bud buriest thy content,\n`,
                     `And tender churl mak'st waste in niggarding:\n`,

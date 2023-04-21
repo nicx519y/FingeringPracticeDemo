@@ -20,11 +20,10 @@ export class DisplayComponent {
     }
 
     //设置显示区域内容
-    setContent(config: DisplayConfig) {
+    setContent(model: DisplayViewModel) {
         this.element.innerHTML = '';
         this._showenPage = -1;
 
-        const model: DisplayViewModel = config.parseToViewModel();
         model.pages.forEach((page) => {
             const pageElement = document.createElement('div');
             pageElement.classList.add('page');
@@ -54,7 +53,7 @@ export class DisplayComponent {
         this._wordsElements = Array.from(this.element.querySelectorAll('.word'));
         this._wordOffset = 0;
         //记录每一页的word数量
-        this._wordsCounts = config.getWordsCountAllPage();
+        this._wordsCounts = model.wordsLengthAllPage;
 
         this._setPageActive(0);
     }
@@ -114,8 +113,9 @@ export class DisplayComponent {
     _setPageActive(page: number) {
         if(page === this._showenPage || page < 0 || page > this._pagesElements.length - 1) return;
 
-        let oldIterator: AnimationIterator;
-        let newIterator: AnimationIterator;
+        let oldIterator: AnimationIterator | null = null;
+        let newIterator: AnimationIterator | null = null;
+        let hasOld: boolean = false;
 
         if(this._showenPage >= 0 && this._showenPage < this._pagesElements.length) {
             const pageElementOld = this._pagesElements[this._showenPage];
@@ -127,6 +127,8 @@ export class DisplayComponent {
                 pageElementOld.querySelectorAll('.word'), 
                 this._effectDuration,
                 );
+
+            hasOld = true;
         }
 
         const pageElementNew = this._pagesElements[page];
@@ -138,8 +140,8 @@ export class DisplayComponent {
             this._effectDuration,
             );
         
-        if(oldIterator) {
-            oldIterator.run((ele, idx) => {
+        if(hasOld) {
+            oldIterator && oldIterator.run((ele, idx) => {
                 ele.classList.remove('complete', 'active', 'show', 'showen', 'hiden');
                 ele.classList.add('hide');
             }, (ele, idx) => {
@@ -148,7 +150,7 @@ export class DisplayComponent {
             }, 
             this._effectOutOrder,
             ).then(() => {
-                newIterator.run(
+                newIterator && newIterator.run(
                     (ele, idx) => {
                         ele.classList.remove('showen', 'hide', 'hiden');
                         ele.classList.add('show')
